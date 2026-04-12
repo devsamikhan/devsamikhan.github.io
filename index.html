@@ -3,128 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sami Ullah Khan | Android & Kotlin Developer</title>
-    <meta name="description" content="Portfolio of Sami Ullah Khan, Android Developer specializing in Kotlin, Jetpack Compose, and AI integration.">
+    <title>Sami Ullah Khan | Vibe Coder & AI Professional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;700&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #0f172a;
-            --text-color: #f8fafc;
-            --accent-color: #38bdf8;
-            --card-bg: #1e293b;
+            --bg: #020617;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        /* Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header & Profile */
         header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(180deg, #020617 0%, var(--bg-color) 100%);
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
         }
-        h1 { margin: 0; font-size: 3rem; color: var(--accent-color); }
-        h2 { font-weight: 400; color: #94a3b8; font-size: 1.2rem; margin-top: 0.5rem; }
-        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
-        .section-title {
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        h1 { font-size: 3.5rem; margin: 0; letter-spacing: -1px; }
+        .glitch-text { color: var(--accent); font-family: 'Fira Code', monospace; }
+
+        /* Terminal Window */
+        .terminal {
+            background: #1e293b;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            padding: 1rem;
             margin-top: 2rem;
-            display: inline-block;
+            text-align: left;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+        .terminal-header { display: flex; gap: 6px; margin-bottom: 10px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+
+        /* Grid & Cards */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
+
         .card {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-            transition: transform 0.3s ease;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
         }
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { margin-top: 0; color: var(--accent-color); }
+        .card:hover { 
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
         .tag {
-            background-color: #334155;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
+            font-size: 0.75rem;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-right: 5px;
+            border: 1px solid var(--accent);
         }
+
+        /* Poetry Section */
+        .poetry-section {
+            text-align: center;
+            background: rgba(56, 189, 248, 0.05);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            margin: 4rem 0;
+        }
+        .urdu-text {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 1.8rem;
+            line-height: 3rem;
+            direction: rtl;
+        }
+
         footer {
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid #334155;
+            padding: 4rem;
+            border-top: 1px solid #1e293b;
+            color: var(--text-dim);
         }
-        a { color: var(--accent-color); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .social-links a { margin: 0 10px; font-weight: bold; }
+
+        .social-links a {
+            color: var(--text-main);
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .social-links a:hover { color: var(--accent); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Sami Ullah Khan</h1>
-        <h2>Android & Kotlin Developer | AI Enthusiast | Vibe Coder</h2>
+        <img src="profile.jpg" alt="Sami Ullah Khan" class="profile-img">
+        <h1 class="reveal">Sami Ullah <span class="glitch-text">Khan</span></h1>
+        <p class="reveal" style="font-size: 1.2rem; color: var(--text-dim);">Full-Stack Developer | Google AI Professional | Vibe Coder</p>
+        
+        <div class="terminal reveal">
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div>
+                <span style="color: #a6e22e;">></span> sami.currentStatus()<br>
+                <span style="color: #66d9ef;">"Building AI-Powered Android Apps via CLI"</span><br>
+                <span style="color: #a6e22e;">></span> sami.location()<br>
+                <span style="color: #66d9ef;">"Isa Khel, Mianwali, Pakistan"</span><br>
+                <span style="color: #a6e22e;">></span> <span id="cursor">_</span>
+            </div>
+        </div>
     </header>
 
     <div class="container">
-        <section>
-            <h2 class="section-title">About Me</h2>
-            <p>I am a passionate programmer and Android app developer specializing in Kotlin and Jetpack Compose. I love working from the command line and integrating cutting-edge AI technologies, like the Gemini API, into practical, everyday applications. My focus is on writing clean code and creating intuitive user experiences.</p>
+        <section class="reveal">
+            <h2 style="color: var(--accent);">01. About Me</h2>
+            <p style="font-size: 1.1rem; color: var(--text-dim); max-width: 800px;">
+                I am a specialized Android Developer focused on <b>Kotlin</b> and <b>Jetpack Compose</b>. 
+                In a world of heavy IDEs, I thrive in the terminal, managing projects via CLI. 
+                Certified as a <b>Google AI Professional</b>, I bridge the gap between complex AI logic and intuitive mobile experiences.
+            </p>
         </section>
 
-        <section>
-            <h2 class="section-title">Featured Projects</h2>
+        <section class="reveal">
+            <h2 style="color: var(--accent);">02. Featured Projects</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>AI-Powered Smart Notes</h3>
-                    <p>An intelligent note-taking application featuring an emotion/mood-based UI and AI summarization capabilities.</p>
-                    <div class="tags">
-                        <span class="tag">Kotlin</span> <span class="tag">Jetpack Compose</span> <span class="tag">Gemini API</span>
-                    </div>
+                    <h3 style="margin-top:0;">BLS School LMS</h3>
+                    <p style="color: var(--text-dim);">A fully automated institutional engine. Integrated Google Apps Script for admission records and AI-driven communication.</p>
+                    <div><span class="tag">Google Apps Script</span><span class="tag">Automation</span></div>
                 </div>
                 <div class="card">
-                    <h3>BLS School LMS</h3>
-                    <p>A comprehensive Learning Management System with an automated admission record and communication engine.</p>
-                    <div class="tags">
-                        <span class="tag">System Design</span> <span class="tag">Database</span>
-                    </div>
+                    <h3 style="margin-top:0;">Smart Notes AI</h3>
+                    <p style="color: var(--text-dim);">An Android application that uses Gemini API to categorize and summarize notes based on user emotion.</p>
+                    <div><span class="tag">Kotlin</span><span class="tag">Gemini API</span><span class="tag">MVVM</span></div>
                 </div>
                 <div class="card">
-                    <h3>Utility Apps</h3>
-                    <p>Developed various utility applications including <strong>sami-downloader</strong> (video downloader) and <strong>My-Clock-Project</strong>.</p>
-                    <div class="tags">
-                        <span class="tag">Android</span> <span class="tag">CLI</span>
-                    </div>
+                    <h3 style="margin-top:0;">Sami Downloader</h3>
+                    <p style="color: var(--text-dim);">Cloud-based video processing tool with a sleek, minimalist web interface for high-speed downloads.</p>
+                    <div><span class="tag">Web Dev</span><span class="tag">Cloud</span></div>
                 </div>
             </div>
         </section>
 
-        <section>
-            <h2 class="section-title">Certifications & Education</h2>
-            <ul>
-                <li><strong>Google AI Professional Certificate</strong> - Coursera</li>
-                <li><strong>ICS (Computer Science)</strong> - Punjab Group of Colleges</li>
-            </ul>
+        <section class="poetry-section reveal">
+            <h2 style="color: var(--accent); margin-bottom: 2rem;">03. Code & Couplets</h2>
+            <div class="urdu-text">
+                وہ جو خواب تھے میرے ذوق میں، انہیں فن کا میں نے لباس دیا<br>
+                کبھی حرفِ فن میں پرو دیا، کبھی کوڈ میں انہیں ڈھال دیا
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-dim);">— Original poetry by Sami</p>
+        </section>
+
+        <section class="reveal" style="text-align: center;">
+            <h2 style="color: var(--accent);">04. Get In Touch</h2>
+            <p>I'm currently open for professional collaborations and AI-focused projects.</p>
+            <a href="mailto:your-email@example.com" style="background: var(--accent); color: var(--bg); padding: 12px 30px; border-radius: 8px; font-weight: bold; display: inline-block; margin-top: 1rem;">Hire the Vibe Coder</a>
         </section>
     </div>
 
     <footer>
         <div class="social-links">
-            <a href="https://github.com/devsamikhan" target="_blank">GitHub</a> | 
-            <a href="https://linkedin.com/in/devsamikhan" target="_blank">LinkedIn</a> | 
-            <a href="https://x.com/devsamikhan" target="_blank">X (Twitter)</a> | 
-            <a href="https://instagram.com/devsamikhan" target="_blank">Instagram</a>
+            <a href="https://github.com/devsamikhan">GitHub</a>
+            <a href="https://linkedin.com/in/devsamikhan">LinkedIn</a>
+            <a href="https://instagram.com/devsamikhan">Instagram</a>
         </div>
-        <p>&copy; 2026 Sami Ullah Khan. Built via Command Line.</p>
+        <p style="margin-top: 2rem;">&copy; 2026 Sami Ullah Khan. Built with Passion & Terminal.</p>
     </footer>
 
+    <script>
+        // Scroll Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Initial call
+        reveal();
+    </script>
 </body>
 </html>
