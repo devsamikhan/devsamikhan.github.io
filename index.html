@@ -2,7 +2,7 @@
 <html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Sami Ullah Khan | AI Systems Engineer & Full-Stack Architect</title>
   <meta name="description" content="Portfolio of Sami Ullah Khan — AI Systems Software Engineer, Compiler & OS Enthusiast, Android Kotlin Developer, and Full-Stack Architect. Showcasing 30+ open-source repositories." />
   <meta name="author" content="Sami Ullah Khan" />
@@ -23,11 +23,11 @@
   <style>
     :root {
       --bg: #09090b;
-      --bg-subtle: #0d0d11;
-      --card-bg: rgba(18, 18, 23, 0.75);
+      --bg-subtle: #0f0f13;
+      --card-bg: rgba(18, 18, 23, 0.7);
       --card-border: rgba(255, 255, 255, 0.08);
-      --card-border-hover: rgba(99, 102, 241, 0.4);
-      --card-hover-bg: rgba(24, 24, 30, 0.9);
+      --card-border-hover: rgba(99, 102, 241, 0.45);
+      --card-hover-bg: rgba(24, 24, 30, 0.95);
       
       --text-primary: #fafafa;
       --text-secondary: #a1a1aa;
@@ -46,6 +46,12 @@
       padding: 0;
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-padding-top: 5rem;
     }
 
     body {
@@ -57,25 +63,33 @@
       min-height: 100vh;
     }
 
-    /* Subtle Linear Top Glow */
+    /* Subtle Linear Ambient Mesh Glow */
     .ambient-glow {
       position: absolute;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 1000px;
-      height: 450px;
-      background: radial-gradient(ellipse at 50% -10%, rgba(99, 102, 241, 0.14), transparent 70%);
+      width: min(100vw, 1000px);
+      height: 400px;
+      background: radial-gradient(ellipse at 50% -10%, rgba(99, 102, 241, 0.16), transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
 
+    /* Responsive Container */
     .container {
+      width: 100%;
       max-width: 1140px;
       margin: 0 auto;
       padding: 0 1.5rem;
       position: relative;
       z-index: 10;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 1rem;
+      }
     }
 
     /* Header & Navigation */
@@ -85,40 +99,48 @@
       z-index: 100;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      background: rgba(9, 9, 11, 0.8);
+      background: rgba(9, 9, 11, 0.85);
       border-bottom: 1px solid var(--card-border);
+      transition: background 0.3s;
     }
     .nav-inner {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 0.9rem 1.5rem;
+      padding: 0.85rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
+    @media (max-width: 640px) {
+      .nav-inner {
+        padding: 0.8rem 1rem;
+      }
+    }
     .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.75rem;
       text-decoration: none;
       color: #fff;
     }
     .brand-logo {
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       letter-spacing: -0.02em;
+      white-space: nowrap;
     }
     .status-indicator {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
+      gap: 0.35rem;
+      font-size: 0.72rem;
       color: var(--emerald);
       background: rgba(16, 185, 129, 0.08);
       border: 1px solid rgba(16, 185, 129, 0.2);
-      padding: 0.2rem 0.6rem;
+      padding: 0.15rem 0.55rem;
       border-radius: 9999px;
       font-weight: 500;
+      white-space: nowrap;
     }
     .pulse-dot {
       width: 6px;
@@ -127,6 +149,7 @@
       border-radius: 50%;
       box-shadow: 0 0 8px var(--emerald);
     }
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -135,7 +158,7 @@
     .nav-item {
       color: var(--text-secondary);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 500;
       transition: color 0.15s;
     }
@@ -146,81 +169,157 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
       color: #fff;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--card-border);
-      padding: 0.45rem 0.9rem;
+      padding: 0.45rem 0.85rem;
       border-radius: 8px;
       text-decoration: none;
       transition: all 0.2s;
+      white-space: nowrap;
     }
     .github-btn:hover {
       background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Mobile Hamburger Button */
+    .mobile-menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: #fff;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .mobile-menu-toggle:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(9, 9, 11, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1.5rem;
+      flex-direction: column;
+      gap: 1.2rem;
+      z-index: 99;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .mobile-drawer.open {
+      display: flex;
+    }
+    .mobile-drawer .nav-item {
+      font-size: 1.05rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    @media (max-width: 820px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-toggle {
+        display: inline-flex;
+      }
     }
 
     /* Hero Section */
     .hero {
-      padding: 5.5rem 0 3.5rem 0;
+      padding: 4.5rem 0 3rem 0;
+    }
+    @media (max-width: 640px) {
+      .hero {
+        padding: 3rem 0 2rem 0;
+      }
     }
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       color: var(--accent-light);
       background: rgba(99, 102, 241, 0.1);
       border: 1px solid rgba(99, 102, 241, 0.25);
-      padding: 0.35rem 0.85rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 9999px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       letter-spacing: 0.02em;
+      max-width: 100%;
+      white-space: normal;
+      word-break: break-word;
     }
     .hero-title {
-      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-size: clamp(2rem, 5.5vw, 3.8rem);
       font-weight: 700;
       letter-spacing: -0.035em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
+      line-height: 1.15;
+      margin-bottom: 0.9rem;
     }
     .hero-title span {
       color: #fff;
     }
     .hero-subtitle {
-      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
       font-weight: 500;
       color: var(--accent-light);
       margin-bottom: 1.2rem;
       letter-spacing: -0.01em;
+      line-height: 1.4;
     }
     .hero-bio {
-      max-width: 680px;
+      max-width: 700px;
       color: var(--text-secondary);
-      font-size: 1.05rem;
+      font-size: clamp(0.95rem, 1.6vw, 1.05rem);
       line-height: 1.7;
-      margin-bottom: 2.2rem;
+      margin-bottom: 2rem;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-bottom: 3.5rem;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
     }
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+      }
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      padding: 0.75rem 1.4rem;
+      padding: 0.75rem 1.35rem;
       border-radius: 9px;
       text-decoration: none;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
+      min-height: 44px; /* Accessible touch target */
     }
     .btn-primary {
       background: #fff;
@@ -238,95 +337,131 @@
     }
     .btn-secondary:hover {
       background: var(--card-hover-bg);
-      border-color: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.18);
       transform: translateY(-1px);
     }
 
     /* Metrics Strip */
     .metrics-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      padding: 1.5rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
+      padding: 1.3rem;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
+    }
+    @media (max-width: 768px) {
+      .metrics-strip {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+        padding: 1.2rem;
+      }
+    }
+    @media (max-width: 380px) {
+      .metrics-strip {
+        grid-template-columns: 1fr;
+      }
     }
     .metric-item {
       display: flex;
       flex-direction: column;
     }
     .metric-value {
-      font-size: 1.75rem;
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
       font-weight: 700;
       color: #fff;
       font-family: 'JetBrains Mono', monospace;
       letter-spacing: -0.02em;
     }
     .metric-label {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
       margin-top: 0.2rem;
+      line-height: 1.3;
     }
 
     /* Section Styling */
     .section-wrap {
-      padding: 4.5rem 0;
+      padding: 4rem 0;
+    }
+    @media (max-width: 640px) {
+      .section-wrap {
+        padding: 2.8rem 0;
+      }
     }
     .section-header {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
-      margin-bottom: 2rem;
+      gap: 0.35rem;
+      margin-bottom: 1.8rem;
     }
     .section-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
+      font-size: 0.76rem;
       color: var(--accent-light);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       font-weight: 500;
     }
     .section-title {
-      font-size: 1.85rem;
+      font-size: clamp(1.5rem, 3.2vw, 1.95rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       color: #fff;
+      line-height: 1.25;
     }
     .section-desc {
       color: var(--text-secondary);
-      font-size: 0.98rem;
+      font-size: 0.94rem;
       max-width: 620px;
+      line-height: 1.6;
     }
 
     /* Bento Grid (Flagship Projects) */
     .bento-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    @media (max-width: 1024px) {
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
     }
     .bento-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 1.6rem;
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
     }
+    @media (max-width: 480px) {
+      .bento-card {
+        padding: 1.25rem;
+      }
+    }
     .bento-card:hover {
       border-color: var(--card-border-hover);
       background: var(--card-hover-bg);
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     }
     .bento-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
     }
     .bento-tag {
       font-family: 'JetBrains Mono', monospace;
@@ -339,27 +474,34 @@
       font-weight: 500;
     }
     .card-link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       text-decoration: none;
-      transition: color 0.15s, transform 0.15s;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
     }
-    .bento-card:hover .card-link-btn {
+    .card-link-btn:hover {
       color: #fff;
-      transform: translate(2px, -2px);
+      background: rgba(255, 255, 255, 0.08);
     }
     .bento-title {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 0.5rem;
       letter-spacing: -0.01em;
+      line-height: 1.35;
     }
     .bento-desc {
       color: var(--text-secondary);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       line-height: 1.6;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.1rem;
       flex-grow: 1;
     }
     .bento-meta {
@@ -367,7 +509,7 @@
       align-items: center;
       gap: 0.4rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--emerald);
       background: var(--emerald-glow);
       border: 1px solid rgba(16, 185, 129, 0.25);
@@ -375,12 +517,15 @@
       border-radius: 6px;
       margin-bottom: 1rem;
       width: fit-content;
+      max-width: 100%;
+      white-space: normal;
+      word-break: break-word;
     }
     .bento-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 0.9rem;
+      padding-top: 0.85rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
     .lang-indicator {
@@ -388,21 +533,22 @@
       align-items: center;
       gap: 0.45rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--text-secondary);
     }
     .lang-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
+      flex-shrink: 0;
     }
 
     /* Repository Explorer Controls */
     .repo-controls {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 1.8rem;
+      gap: 0.9rem;
+      margin-bottom: 1.6rem;
     }
     .search-bar-wrap {
       position: relative;
@@ -415,18 +561,20 @@
       transform: translateY(-50%);
       color: var(--text-muted);
       font-size: 0.9rem;
+      pointer-events: none;
     }
     .search-input {
       width: 100%;
-      padding: 0.85rem 1rem 0.85rem 2.6rem;
+      padding: 0.85rem 2.8rem 0.85rem 2.6rem;
       border-radius: 12px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       color: #fff;
       font-family: inherit;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       outline: none;
       transition: all 0.2s;
+      min-height: 48px;
     }
     .search-input:focus {
       border-color: var(--accent);
@@ -435,7 +583,7 @@
     }
     .clear-search-btn {
       position: absolute;
-      right: 1rem;
+      right: 0.85rem;
       top: 50%;
       transform: translateY(-50%);
       background: none;
@@ -443,23 +591,48 @@
       color: var(--text-muted);
       cursor: pointer;
       display: none;
+      padding: 0.4rem;
+      font-size: 0.95rem;
+    }
+    .clear-search-btn:hover {
+      color: #fff;
     }
 
+    /* Filter Pills (Scrollable on small mobile) */
+    .filter-pills-wrap {
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.2rem;
+    }
+    .filter-pills-wrap::-webkit-scrollbar {
+      display: none;
+    }
     .filter-pills {
       display: flex;
-      flex-wrap: wrap;
       gap: 0.5rem;
+      width: max-content;
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 640px) {
+      .filter-pills {
+        flex-wrap: nowrap;
+      }
     }
     .filter-pill {
-      padding: 0.4rem 0.9rem;
+      padding: 0.45rem 0.85rem;
       border-radius: 8px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 500;
       color: var(--text-secondary);
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       cursor: pointer;
       transition: all 0.15s;
+      white-space: nowrap;
+      min-height: 38px;
     }
     .filter-pill:hover {
       color: #fff;
@@ -467,21 +640,32 @@
     }
     .filter-pill.active {
       color: #fff;
-      background: rgba(99, 102, 241, 0.18);
+      background: rgba(99, 102, 241, 0.2);
       border-color: var(--accent);
     }
 
     /* All Repositories Grid */
     .repos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
+    @media (max-width: 1024px) {
+      .repos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .repos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .repo-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 12px;
-      padding: 1.3rem;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -497,33 +681,35 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 0.5rem;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
     .repo-name {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.98rem;
+      font-size: 0.94rem;
       font-weight: 600;
       color: #fff;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
+      word-break: break-word;
+      line-height: 1.4;
     }
     .repo-name:hover {
       color: var(--accent-light);
     }
     .repo-desc {
       color: var(--text-secondary);
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       line-height: 1.5;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
       flex-grow: 1;
     }
     .repo-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--text-muted);
       font-family: 'JetBrains Mono', monospace;
       padding-top: 0.7rem;
@@ -532,26 +718,36 @@
     .repo-stats {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.75rem;
     }
 
     /* Tech Stack Matrix */
     .skills-section {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 900px) {
+      .skills-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 500px) {
+      .skills-section {
+        grid-template-columns: 1fr;
+      }
     }
     .stack-box {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
-      padding: 1.4rem;
+      padding: 1.3rem;
     }
     .stack-cat {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
       color: #fff;
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.85rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -559,15 +755,15 @@
     .stack-items {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
+      gap: 0.4rem;
     }
     .stack-chip {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--text-secondary);
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 0.25rem 0.6rem;
+      padding: 0.25rem 0.55rem;
       border-radius: 6px;
     }
 
@@ -576,17 +772,21 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 2.2rem;
+      padding: 2rem;
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 2rem;
       align-items: center;
     }
-    @media (max-width: 768px) {
-      .contact-card { grid-template-columns: 1fr; }
+    @media (max-width: 820px) {
+      .contact-card {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        gap: 1.5rem;
+      }
     }
     .contact-heading {
-      font-size: 1.5rem;
+      font-size: clamp(1.3rem, 3vw, 1.6rem);
       font-weight: 700;
       color: #fff;
       margin-bottom: 0.5rem;
@@ -594,8 +794,8 @@
     }
     .contact-sub {
       color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
+      font-size: 0.92rem;
+      margin-bottom: 1.4rem;
       line-height: 1.6;
     }
     .contact-actions {
@@ -611,24 +811,28 @@
       border: 1px solid var(--card-border);
       padding: 0.75rem 1rem;
       border-radius: 10px;
+      gap: 0.5rem;
     }
     .email-text {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.88rem;
+      font-size: clamp(0.76rem, 2.2vw, 0.88rem);
       color: #fff;
       text-decoration: none;
+      word-break: break-all;
     }
     .copy-email-btn {
       background: rgba(99, 102, 241, 0.15);
       border: 1px solid rgba(99, 102, 241, 0.3);
       color: var(--accent-light);
       font-family: inherit;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      padding: 0.35rem 0.75rem;
+      padding: 0.4rem 0.75rem;
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.2s;
+      flex-shrink: 0;
+      min-height: 36px;
     }
     .copy-email-btn:hover {
       background: rgba(99, 102, 241, 0.25);
@@ -636,21 +840,24 @@
     }
     .social-links-row {
       display: flex;
-      gap: 0.8rem;
+      flex-wrap: wrap;
+      gap: 0.65rem;
     }
     .social-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.85rem;
+      justify-content: center;
+      gap: 0.45rem;
+      font-size: 0.84rem;
       font-weight: 500;
       color: var(--text-secondary);
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--card-border);
-      padding: 0.55rem 1rem;
+      padding: 0.55rem 0.95rem;
       border-radius: 8px;
       text-decoration: none;
       transition: all 0.2s;
+      min-height: 40px;
     }
     .social-pill:hover {
       color: #fff;
@@ -658,13 +865,45 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
+    /* Back to Top Floating Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(18, 18, 23, 0.9);
+      border: 1px solid var(--card-border);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      cursor: pointer;
+      z-index: 90;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid var(--card-border);
       padding: 2.5rem 0;
-      margin-top: 4rem;
+      margin-top: 3.5rem;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       text-align: center;
     }
 
@@ -672,7 +911,7 @@
     .empty-state {
       grid-column: 1 / -1;
       text-align: center;
-      padding: 3rem;
+      padding: 3rem 1rem;
       color: var(--text-muted);
       display: none;
     }
@@ -684,7 +923,7 @@
   <div class="ambient-glow"></div>
 
   <!-- Header Navigation -->
-  <nav class="navbar">
+  <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#" class="brand-wrap">
         <span class="brand-logo">Sami Ullah Khan</span>
@@ -693,19 +932,38 @@
         </span>
       </a>
 
+      <!-- Desktop Links -->
       <div class="nav-links">
         <a href="#featured" class="nav-item">Featured</a>
         <a href="#repositories" class="nav-item">Repositories (31)</a>
         <a href="#stack" class="nav-item">Stack</a>
+        <a href="#credentials" class="nav-item">Credentials</a>
         <a href="#contact" class="nav-item">Contact</a>
         <a href="https://github.com/devsamikhan" target="_blank" rel="noreferrer" class="github-btn">
           <i class="fab fa-github"></i> GitHub ↗
         </a>
       </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Slide-Down Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="#featured" class="nav-item mobile-nav-link">Featured Systems</a>
+      <a href="#repositories" class="nav-item mobile-nav-link">All 31 Repositories</a>
+      <a href="#stack" class="nav-item mobile-nav-link">Technical Stack</a>
+      <a href="#credentials" class="nav-item mobile-nav-link">Credentials</a>
+      <a href="#contact" class="nav-item mobile-nav-link">Contact</a>
+      <a href="https://github.com/devsamikhan" target="_blank" rel="noreferrer" class="github-btn" style="justify-content:center; width:100%;">
+        <i class="fab fa-github"></i> Visit GitHub Profile ↗
+      </a>
     </div>
   </nav>
 
-  <div class="container">
+  <main class="container">
 
     <!-- Hero Section -->
     <header class="hero">
@@ -775,7 +1033,7 @@
           <div>
             <div class="bento-top">
               <span class="bento-tag">Systems & Compilers</span>
-              <a href="https://github.com/devsamikhan/aether" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source">
+              <a href="https://github.com/devsamikhan/aether" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="Aether GitHub Link">
                 <i class="fas fa-arrow-up-right-from-square"></i>
               </a>
             </div>
@@ -798,7 +1056,7 @@
           <div>
             <div class="bento-top">
               <span class="bento-tag">Operating Systems</span>
-              <a href="https://github.com/devsamikhan/SamiOS" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source">
+              <a href="https://github.com/devsamikhan/SamiOS" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="SamiOS GitHub Link">
                 <i class="fas fa-arrow-up-right-from-square"></i>
               </a>
             </div>
@@ -821,7 +1079,7 @@
           <div>
             <div class="bento-top">
               <span class="bento-tag">Android & Mobile</span>
-              <a href="https://github.com/devsamikhan/theBLS" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source">
+              <a href="https://github.com/devsamikhan/theBLS" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="theBLS GitHub Link">
                 <i class="fas fa-arrow-up-right-from-square"></i>
               </a>
             </div>
@@ -844,7 +1102,7 @@
           <div>
             <div class="bento-top">
               <span class="bento-tag">Full-Stack Cloud</span>
-              <a href="https://github.com/devsamikhan/blsschool" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source">
+              <a href="https://github.com/devsamikhan/blsschool" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="BLS School GitHub Link">
                 <i class="fas fa-arrow-up-right-from-square"></i>
               </a>
             </div>
@@ -867,7 +1125,7 @@
           <div>
             <div class="bento-top">
               <span class="bento-tag">Automation & IoT</span>
-              <a href="https://github.com/devsamikhan/Bijli-Bot" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source">
+              <a href="https://github.com/devsamikhan/Bijli-Bot" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="Bijli-Bot GitHub Link">
                 <i class="fas fa-arrow-up-right-from-square"></i>
               </a>
             </div>
@@ -890,7 +1148,7 @@
           <div>
             <div class="bento-top">
               <span class="bento-tag">Algorithms & Optimization</span>
-              <a href="https://github.com/devsamikhan/hsag" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source">
+              <a href="https://github.com/devsamikhan/hsag" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="HSAG GitHub Link">
                 <i class="fas fa-arrow-up-right-from-square"></i>
               </a>
             </div>
@@ -926,23 +1184,25 @@
         <div class="search-bar-wrap">
           <i class="fas fa-search search-icon"></i>
           <input type="text" class="search-input" id="repoSearch" placeholder="Search by project name, description, or language (e.g. rust, os, python, web)..." autocomplete="off" />
-          <button class="clear-search-btn" id="clearSearch"><i class="fas fa-times"></i></button>
+          <button class="clear-search-btn" id="clearSearch" aria-label="Clear search input"><i class="fas fa-times"></i></button>
         </div>
 
-        <div class="filter-pills" id="filterPills">
-          <button class="filter-pill active" data-lang="all">All (31)</button>
-          <button class="filter-pill" data-lang="rust">Rust (2)</button>
-          <button class="filter-pill" data-lang="typescript">TypeScript (9)</button>
-          <button class="filter-pill" data-lang="python">Python (8)</button>
-          <button class="filter-pill" data-lang="kotlin">Kotlin (1)</button>
-          <button class="filter-pill" data-lang="systems">Systems / C (2)</button>
-          <button class="filter-pill" data-lang="web">Web & HTML (9)</button>
+        <div class="filter-pills-wrap">
+          <div class="filter-pills" id="filterPills">
+            <button class="filter-pill active" data-lang="all">All (31)</button>
+            <button class="filter-pill" data-lang="rust">Rust (2)</button>
+            <button class="filter-pill" data-lang="typescript">TypeScript (9)</button>
+            <button class="filter-pill" data-lang="python">Python (8)</button>
+            <button class="filter-pill" data-lang="kotlin">Kotlin (1)</button>
+            <button class="filter-pill" data-lang="systems">Systems / C (2)</button>
+            <button class="filter-pill" data-lang="web">Web & HTML (9)</button>
+          </div>
         </div>
       </div>
 
       <!-- Repositories Grid -->
       <div class="repos-grid" id="reposGrid">
-        <!-- Rendered dynamically by JavaScript with static fallback -->
+        <!-- Rendered dynamically by JavaScript -->
       </div>
 
       <!-- Empty State -->
@@ -1013,7 +1273,7 @@
     </section>
 
     <!-- Part 4: Verified Credentials -->
-    <section class="section-wrap" style="padding-top:1rem;">
+    <section id="credentials" class="section-wrap" style="padding-top:1rem;">
       <div class="section-header">
         <span class="section-tag">04 / Credentials</span>
         <h2 class="section-title">Certifications & Education</h2>
@@ -1043,7 +1303,7 @@
           <p class="contact-sub">
             Available for systems engineering, compiler research, native Android development, and high-impact full-stack software.
           </p>
-          <div style="font-size:0.85rem; color:var(--text-muted); display:flex; align-items:center; gap:0.4rem;">
+          <div style="font-size:0.84rem; color:var(--text-muted); display:flex; align-items:center; gap:0.4rem;">
             <i class="fas fa-map-pin" style="color:var(--accent-light);"></i>
             <span>Mianwali / Punjab, Pakistan • Open to Global Remote Roles</span>
           </div>
@@ -1070,7 +1330,12 @@
       </div>
     </section>
 
-  </div>
+  </main>
+
+  <!-- Back to top floating button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <!-- Footer -->
   <footer>
@@ -1079,8 +1344,37 @@
     </div>
   </footer>
 
-  <!-- Instant Client-Side Repository Explorer Script -->
+  <!-- Scripts: Mobile Navigation & Repository Explorer -->
   <script>
+    // 1. Mobile Menu Drawer
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    if (mobileMenuToggle && mobileDrawer) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileDrawer.classList.toggle('open');
+        const isOpen = mobileDrawer.classList.contains('open');
+        mobileMenuToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileDrawer.classList.remove('open');
+          mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+      });
+    }
+
+    // 2. Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    }, { passive: true });
+
+    // 3. Repositories Explorer
     const allRepos = [{"name": "aether", "description": "The Post-Quantum, Intent-Driven Programming Language engineered from scratch in Rust. Implements custom lexer, tokenizer, and AST generation pipeline.", "language": "Rust", "stars": 1, "url": "https://github.com/devsamikhan/aether", "category": "rust", "featured": true, "highlight": "Zero-Cost Safety \u2022 Custom AST"}, {"name": "SamiOS", "description": "Experimental x86 operating system and microkernel architecture exploring protected mode transition, custom bootloaders, IDT, and memory paging.", "language": "C", "stars": 0, "url": "https://github.com/devsamikhan/SamiOS", "category": "systems", "featured": true, "highlight": "x86 Protected Mode \u2022 Paging"}, {"name": "theBLS", "description": "Next-generation Android application engineered with Kotlin and Jetpack Compose featuring intelligent UI and cloud synchronization.", "language": "Kotlin", "stars": 0, "url": "https://github.com/devsamikhan/theBLS", "category": "kotlin", "featured": true, "highlight": "60fps Native Compose \u2022 MVVM"}, {"name": "blsschool", "description": "Enterprise institutional school management system and student ERP. Automates admissions, fee records, and dynamic academic report generation.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/blsschool", "category": "typescript", "featured": true, "highlight": "500+ Daily Users \u2022 99.9% Uptime"}, {"name": "Bijli-Bot", "description": "Autonomous power management and electricity billing calculation bot built with TypeScript and Node.js for tracking real-time load cycles.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/Bijli-Bot", "category": "typescript", "featured": true, "highlight": "Automated Billing & Alerts"}, {"name": "hsag", "description": "Hybrid Sami-Adaptive Greedy optimization framework for multi-constraint combinatorial problems and dynamic heuristic convergence.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/hsag", "category": "python", "featured": true, "highlight": "Sub-linear Heuristic Tuning"}, {"name": "sami-programming-language", "description": "Research compiler project exploring custom syntax parsing, grammar definitions, and abstract syntax tree generation in Rust.", "language": "Rust", "stars": 0, "url": "https://github.com/devsamikhan/sami-programming-language", "category": "rust", "featured": false}, {"name": "Hospital-management-system", "description": "Modern hospital and clinic operations portal featuring patient appointment scheduling, doctor registries, and record management.", "language": "TypeScript", "stars": 1, "url": "https://github.com/devsamikhan/Hospital-management-system", "category": "typescript", "featured": false}, {"name": "EXCHANGE-FULL-STACK", "description": "Comprehensive real-time financial trading platform for market data visualization, order book depth, and trade execution management.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/EXCHANGE-FULL-STACK", "category": "typescript", "featured": false}, {"name": "coffee-management-system", "description": "Artisanal coffee house management and point-of-sale inventory platform engineered with TypeScript and modern web interfaces.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/coffee-management-system", "category": "typescript", "featured": false}, {"name": "chatapp", "description": "Modern real-time messaging application with encrypted channel capabilities, responsive UI, and instant notification dispatch.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/chatapp", "category": "typescript", "featured": false}, {"name": "titan-ultra-pro", "description": "High-throughput cloud media downloader engineered in Python with multi-threaded streaming and automated format conversion.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/titan-ultra-pro", "category": "python", "featured": false}, {"name": "Sami-Downloader-Pro", "description": "Automated media fetching utility with progress bar tracking, stream extraction, and cloud storage dispatch.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/Sami-Downloader-Pro", "category": "python", "featured": false}, {"name": "sami-downloader-web", "description": "Fast and lightweight web interface for cloud-based video and audio retrieval with zero local resource bottlenecks.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/sami-downloader-web", "category": "python", "featured": false}, {"name": "sami-downloader-app", "description": "Cross-platform graphical desktop downloader client featuring one-click downloads and download queue management.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/sami-downloader-app", "category": "web", "featured": false}, {"name": "ListAi", "description": "Intelligent task prioritization engine harnessing AI APIs to automatically summarize, categorize, and execute daily routines.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/ListAi", "category": "python", "featured": false}, {"name": "Physics-Discovery", "description": "Computational physics simulation and educational tool exploring kinematic trajectories, gravity calculations, and vector mathematics.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/Physics-Discovery", "category": "python", "featured": false}, {"name": "sami-Database-engine", "description": "Experimental custom relational and key-value database storage engine exploring B-tree index concepts and disk paging.", "language": "C", "stars": 0, "url": "https://github.com/devsamikhan/sami-Database-engine", "category": "systems", "featured": false}, {"name": "blended-learning-school-website", "description": "Interactive educational portal for blended learning institutions featuring curriculum access and dynamic announcements.", "language": "JavaScript", "stars": 0, "url": "https://github.com/devsamikhan/blended-learning-school-website", "category": "web", "featured": false}, {"name": "My-Clock-Project", "description": "Precision web timekeeper with custom glassmorphism dials, timezone support, and stop-timer functionality.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/My-Clock-Project", "category": "typescript", "featured": false}, {"name": "my-firebase-project", "description": "Full-stack Firebase authentication, Firestore data synchronization, and cloud function backend template.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/my-firebase-project", "category": "typescript", "featured": false}, {"name": "my-flet-app", "description": "Modern cross-platform reactive GUI application built with Python Flet (Flutter runtime) for lightweight desktop experiences.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/my-flet-app", "category": "python", "featured": false}, {"name": "saudi-cafe", "description": "Refined specialty cafe digital storefront featuring interactive beverage catalogs and responsive mobile layout.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/saudi-cafe", "category": "typescript", "featured": false}, {"name": "Sami-Mega-Portfolio", "description": "Curated collection of 50+ interactive algorithms, DOM manipulation utilities, calculators, and API experiments.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/Sami-Mega-Portfolio", "category": "typescript", "featured": false}, {"name": "animated-giggle", "description": "Algorithmic utility sandbox and automation script library for rapid Python development workflows.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/animated-giggle", "category": "python", "featured": false}, {"name": "my-webs", "description": "Experimental UI components, modern landing page structures, and CSS layout design library.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/my-webs", "category": "web", "featured": false}, {"name": "love-website", "description": "Interactive creative celebration website with smooth canvas animations, custom particles, and audio effects.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/love-website", "category": "web", "featured": false}, {"name": "GHS-Sheikh-Mehmood", "description": "Official institutional portal for Government High School Sheikh Mehmood featuring student portals and faculty records.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/GHS-Sheikh-Mehmood", "category": "web", "featured": false}, {"name": "Ghs-sheikh-mehmood-", "description": "Academic administration and public announcement platform designed for local educational accessibility.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/Ghs-sheikh-mehmood-", "category": "web", "featured": false}, {"name": "devsamikhan", "description": "Special GitHub developer profile repository with automated stats, architectural roadmaps, and systems engineering showcase.", "language": "Markdown", "stars": 0, "url": "https://github.com/devsamikhan/devsamikhan", "category": "web", "featured": false}, {"name": "devsamikhan.github.io", "description": "Official production portfolio of Sami Ullah Khan \u2014 Built with modern minimalist Linear/Vercel design system.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/devsamikhan.github.io", "category": "web", "featured": false}];
 
     const langColors = {
@@ -1141,7 +1435,7 @@
                   <i class="far fa-folder-closed" style="font-size:0.85rem; color:var(--accent-light);"></i>
                   ${repo.name}
                 </a>
-                <a href="${repo.url}" target="_blank" rel="noreferrer" class="card-link-btn" title="Open repository">
+                <a href="${repo.url}" target="_blank" rel="noreferrer" class="card-link-btn" title="Open repository" aria-label="Open ${repo.name} repository">
                   <i class="fas fa-arrow-up-right-from-square"></i>
                 </a>
               </div>
