@@ -17,25 +17,25 @@
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
     :root {
-      --bg: #09090b;
-      --bg-subtle: #0f0f13;
-      --card-bg: rgba(18, 18, 23, 0.7);
+      --bg: #08090a;
+      --bg-panel: #0f1013;
+      --card-bg: rgba(18, 19, 24, 0.72);
       --card-border: rgba(255, 255, 255, 0.08);
       --card-border-hover: rgba(99, 102, 241, 0.45);
-      --card-hover-bg: rgba(24, 24, 30, 0.95);
+      --card-hover-bg: rgba(25, 27, 34, 0.95);
       
-      --text-primary: #fafafa;
-      --text-secondary: #a1a1aa;
+      --text-display: #f7f8f8;
+      --text-body: #a1a1aa;
       --text-muted: #71717a;
       
-      --accent: #6366f1;
+      --accent-indigo: #6366f1;
       --accent-light: #818cf8;
-      --accent-glow: rgba(99, 102, 241, 0.15);
+      --accent-glow: rgba(99, 102, 241, 0.16);
       
       --emerald: #10b981;
       --emerald-glow: rgba(16, 185, 129, 0.15);
@@ -57,26 +57,26 @@
     body {
       font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg);
-      color: var(--text-primary);
+      color: var(--text-display);
       line-height: 1.6;
       overflow-x: hidden;
       min-height: 100vh;
     }
 
-    /* Subtle Linear Ambient Mesh Glow */
+    /* Subtle Linear Ambient Radial Mesh */
     .ambient-glow {
       position: absolute;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: min(100vw, 1000px);
-      height: 400px;
-      background: radial-gradient(ellipse at 50% -10%, rgba(99, 102, 241, 0.16), transparent 70%);
+      width: min(100vw, 1100px);
+      height: 420px;
+      background: radial-gradient(ellipse at 50% -10%, rgba(99, 102, 241, 0.15), transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Responsive Container */
+    /* Main Container */
     .container {
       width: 100%;
       max-width: 1140px;
@@ -92,16 +92,16 @@
       }
     }
 
-    /* Header & Navigation */
+    /* Navbar */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 100;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      background: rgba(9, 9, 11, 0.85);
+      background: rgba(8, 9, 10, 0.85);
       border-bottom: 1px solid var(--card-border);
-      transition: background 0.3s;
+      transition: all 0.2s;
     }
     .nav-inner {
       max-width: 1140px;
@@ -113,7 +113,7 @@
     }
     @media (max-width: 640px) {
       .nav-inner {
-        padding: 0.8rem 1rem;
+        padding: 0.75rem 1rem;
       }
     }
     .brand-wrap {
@@ -126,7 +126,7 @@
     .brand-logo {
       font-weight: 700;
       font-size: 1.05rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       white-space: nowrap;
     }
     .status-indicator {
@@ -156,7 +156,7 @@
       gap: 1.5rem;
     }
     .nav-item {
-      color: var(--text-secondary);
+      color: var(--text-body);
       text-decoration: none;
       font-size: 0.88rem;
       font-weight: 500;
@@ -165,7 +165,37 @@
     .nav-item:hover {
       color: #fff;
     }
-    .github-btn {
+
+    /* Cmd+K Search Trigger in Navbar */
+    .cmd-trigger-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cmd-trigger-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .kbd-shortcut {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-body);
+    }
+
+    .github-nav-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
@@ -180,7 +210,7 @@
       transition: all 0.2s;
       white-space: nowrap;
     }
-    .github-btn:hover {
+    .github-nav-btn:hover {
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.25);
     }
@@ -208,10 +238,10 @@
     .mobile-drawer {
       display: none;
       position: fixed;
-      top: 60px;
+      top: 58px;
       left: 0;
       right: 0;
-      background: rgba(9, 9, 11, 0.98);
+      background: rgba(8, 9, 10, 0.98);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--card-border);
@@ -219,7 +249,7 @@
       flex-direction: column;
       gap: 1.2rem;
       z-index: 99;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
     .mobile-drawer.open {
       display: flex;
@@ -230,7 +260,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 860px) {
       .nav-links {
         display: none;
       }
@@ -241,7 +271,7 @@
 
     /* Hero Section */
     .hero {
-      padding: 4.5rem 0 3rem 0;
+      padding: 4.8rem 0 3rem 0;
     }
     @media (max-width: 640px) {
       .hero {
@@ -261,12 +291,9 @@
       border-radius: 9999px;
       margin-bottom: 1.25rem;
       letter-spacing: 0.02em;
-      max-width: 100%;
-      white-space: normal;
-      word-break: break-word;
     }
     .hero-title {
-      font-size: clamp(2rem, 5.5vw, 3.8rem);
+      font-size: clamp(2.1rem, 5.5vw, 3.8rem);
       font-weight: 700;
       letter-spacing: -0.035em;
       line-height: 1.15;
@@ -284,18 +311,18 @@
       line-height: 1.4;
     }
     .hero-bio {
-      max-width: 700px;
-      color: var(--text-secondary);
+      max-width: 720px;
+      color: var(--text-body);
       font-size: clamp(0.95rem, 1.6vw, 1.05rem);
       line-height: 1.7;
-      margin-bottom: 2rem;
+      margin-bottom: 2.2rem;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
-      margin-bottom: 3rem;
+      margin-bottom: 3.2rem;
     }
     @media (max-width: 480px) {
       .hero-actions {
@@ -319,11 +346,14 @@
       text-decoration: none;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
-      min-height: 44px; /* Accessible touch target */
+      min-height: 44px;
+    }
+    .btn:active {
+      transform: scale(0.98);
     }
     .btn-primary {
       background: #fff;
-      color: #09090b;
+      color: #08090a;
       border: 1px solid #fff;
     }
     .btn-primary:hover {
@@ -332,7 +362,7 @@
     }
     .btn-secondary {
       background: var(--card-bg);
-      color: var(--text-primary);
+      color: var(--text-display);
       border: 1px solid var(--card-border);
     }
     .btn-secondary:hover {
@@ -381,9 +411,9 @@
       line-height: 1.3;
     }
 
-    /* Section Styling */
+    /* Section Headers */
     .section-wrap {
-      padding: 4rem 0;
+      padding: 4.2rem 0;
     }
     @media (max-width: 640px) {
       .section-wrap {
@@ -412,13 +442,13 @@
       line-height: 1.25;
     }
     .section-desc {
-      color: var(--text-secondary);
+      color: var(--text-body);
       font-size: 0.94rem;
-      max-width: 620px;
+      max-width: 640px;
       line-height: 1.6;
     }
 
-    /* Bento Grid (Flagship Projects) */
+    /* Bento Grid (Flagship Projects with Spotlight Hover) */
     .bento-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -435,28 +465,51 @@
         gap: 1rem;
       }
     }
-    .bento-card {
+
+    /* Spotlight Card Effect */
+    .spotlight-card {
+      position: relative;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(400px circle at var(--mouse-x, -200px) var(--mouse-y, -200px), rgba(99, 102, 241, 0.12), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    @media (hover: hover) {
+      .spotlight-card:hover::before {
+        opacity: 1;
+      }
+      .spotlight-card:hover {
+        border-color: var(--card-border-hover);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    .bento-card-inner {
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      height: 100%;
       position: relative;
+      z-index: 2;
     }
     @media (max-width: 480px) {
-      .bento-card {
+      .bento-card-inner {
         padding: 1.25rem;
       }
     }
-    .bento-card:hover {
-      border-color: var(--card-border-hover);
-      background: var(--card-hover-bg);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    }
+
     .bento-top {
       display: flex;
       align-items: center;
@@ -473,6 +526,31 @@
       border-radius: 9999px;
       font-weight: 500;
     }
+    .card-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .inspect-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--text-body);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s;
+    }
+    .inspect-btn:hover {
+      color: #fff;
+      border-color: var(--accent-light);
+      background: rgba(99, 102, 241, 0.15);
+    }
+
     .card-link-btn {
       display: inline-flex;
       align-items: center;
@@ -480,8 +558,8 @@
       color: var(--text-muted);
       font-size: 0.9rem;
       text-decoration: none;
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       border-radius: 6px;
       transition: color 0.15s, background 0.15s;
     }
@@ -489,6 +567,7 @@
       color: #fff;
       background: rgba(255, 255, 255, 0.08);
     }
+
     .bento-title {
       font-size: 1.2rem;
       font-weight: 700;
@@ -498,7 +577,7 @@
       line-height: 1.35;
     }
     .bento-desc {
-      color: var(--text-secondary);
+      color: var(--text-body);
       font-size: 0.9rem;
       line-height: 1.6;
       margin-bottom: 1.1rem;
@@ -518,7 +597,6 @@
       margin-bottom: 1rem;
       width: fit-content;
       max-width: 100%;
-      white-space: normal;
       word-break: break-word;
     }
     .bento-footer {
@@ -534,7 +612,7 @@
       gap: 0.45rem;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.76rem;
-      color: var(--text-secondary);
+      color: var(--text-body);
     }
     .lang-dot {
       width: 8px;
@@ -577,7 +655,7 @@
       min-height: 48px;
     }
     .search-input:focus {
-      border-color: var(--accent);
+      border-color: var(--accent-indigo);
       box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
       background: var(--card-hover-bg);
     }
@@ -598,7 +676,7 @@
       color: #fff;
     }
 
-    /* Filter Pills (Scrollable on small mobile) */
+    /* Filter Pills */
     .filter-pills-wrap {
       width: 100%;
       overflow-x: auto;
@@ -626,7 +704,7 @@
       border-radius: 8px;
       font-size: 0.8rem;
       font-weight: 500;
-      color: var(--text-secondary);
+      color: var(--text-body);
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       cursor: pointer;
@@ -641,7 +719,7 @@
     .filter-pill.active {
       color: #fff;
       background: rgba(99, 102, 241, 0.2);
-      border-color: var(--accent);
+      border-color: var(--accent-indigo);
     }
 
     /* All Repositories Grid */
@@ -661,20 +739,14 @@
       }
     }
 
-    .repo-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
+    .repo-card-inner {
       padding: 1.25rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .repo-card:hover {
-      border-color: var(--card-border-hover);
-      background: var(--card-hover-bg);
-      transform: translateY(-2px);
+      height: 100%;
+      position: relative;
+      z-index: 2;
     }
     .repo-card-top {
       display: flex;
@@ -699,7 +771,7 @@
       color: var(--accent-light);
     }
     .repo-desc {
-      color: var(--text-secondary);
+      color: var(--text-body);
       font-size: 0.85rem;
       line-height: 1.5;
       margin-bottom: 0.9rem;
@@ -760,7 +832,7 @@
     .stack-chip {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.74rem;
-      color: var(--text-secondary);
+      color: var(--text-body);
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.06);
       padding: 0.25rem 0.55rem;
@@ -772,7 +844,7 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 2.2rem;
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 2rem;
@@ -793,7 +865,7 @@
       letter-spacing: -0.02em;
     }
     .contact-sub {
-      color: var(--text-secondary);
+      color: var(--text-body);
       font-size: 0.92rem;
       margin-bottom: 1.4rem;
       line-height: 1.6;
@@ -850,7 +922,7 @@
       gap: 0.45rem;
       font-size: 0.84rem;
       font-weight: 500;
-      color: var(--text-secondary);
+      color: var(--text-body);
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--card-border);
       padding: 0.55rem 0.95rem;
@@ -870,12 +942,13 @@
       position: fixed;
       bottom: 1.5rem;
       right: 1.5rem;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      background: rgba(18, 18, 23, 0.9);
+      background: rgba(18, 19, 24, 0.9);
+      backdrop-filter: blur(8px);
       border: 1px solid var(--card-border);
-      color: var(--text-secondary);
+      color: var(--text-body);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -893,8 +966,172 @@
     }
     .back-to-top:hover {
       color: #fff;
-      border-color: var(--accent);
+      border-color: var(--accent-indigo);
       transform: translateY(-2px);
+    }
+
+    /* Command Palette Modal (Cmd+K) */
+    .cmd-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 10vh 1rem 2rem 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+    .cmd-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .cmd-box {
+      width: 100%;
+      max-width: 620px;
+      background: #111216;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      transform: translateY(-10px) scale(0.98);
+      transition: transform 0.2s;
+    }
+    .cmd-overlay.open .cmd-box {
+      transform: translateY(0) scale(1);
+    }
+    .cmd-header {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      gap: 0.8rem;
+    }
+    .cmd-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .cmd-list {
+      max-height: 380px;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+    .cmd-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0.9rem;
+      border-radius: 9px;
+      color: var(--text-body);
+      text-decoration: none;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .cmd-item:hover, .cmd-item.active {
+      background: rgba(99, 102, 241, 0.15);
+      color: #fff;
+    }
+    .cmd-item-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .cmd-footer {
+      padding: 0.65rem 1.2rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Architecture Specs Modal */
+    .specs-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 9998;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+    .specs-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .specs-modal {
+      width: 100%;
+      max-width: 680px;
+      max-height: 85vh;
+      overflow-y: auto;
+      background: #111216;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 2rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+      transform: scale(0.96);
+      transition: transform 0.2s;
+    }
+    @media (max-width: 500px) {
+      .specs-modal {
+        padding: 1.4rem;
+      }
+    }
+    .specs-overlay.open .specs-modal {
+      transform: scale(1);
+    }
+    .specs-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.2rem;
+    }
+    .specs-close-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .specs-close-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .code-preview-block {
+      background: #08090b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      overflow-x: auto;
+      margin: 1.2rem 0;
+      line-height: 1.5;
     }
 
     /* Footer */
@@ -932,14 +1169,19 @@
         </span>
       </a>
 
-      <!-- Desktop Links -->
+      <!-- Desktop Links & Cmd+K Trigger -->
       <div class="nav-links">
+        <button class="cmd-trigger-btn" id="navCmdTrigger" title="Quick Search (⌘K / Ctrl+K)">
+          <i class="fas fa-search" style="font-size:0.75rem;"></i>
+          <span>Search</span>
+          <span class="kbd-shortcut">⌘K</span>
+        </button>
         <a href="#featured" class="nav-item">Featured</a>
         <a href="#repositories" class="nav-item">Repositories (31)</a>
         <a href="#stack" class="nav-item">Stack</a>
         <a href="#credentials" class="nav-item">Credentials</a>
         <a href="#contact" class="nav-item">Contact</a>
-        <a href="https://github.com/devsamikhan" target="_blank" rel="noreferrer" class="github-btn">
+        <a href="https://github.com/devsamikhan" target="_blank" rel="noreferrer" class="github-nav-btn">
           <i class="fab fa-github"></i> GitHub ↗
         </a>
       </div>
@@ -952,12 +1194,18 @@
 
     <!-- Mobile Slide-Down Drawer -->
     <div class="mobile-drawer" id="mobileDrawer">
+      <button class="cmd-trigger-btn" id="mobileCmdTrigger" style="width:100%; justify-content:space-between; padding:0.6rem 1rem;">
+        <span style="display:flex; align-items:center; gap:0.5rem;">
+          <i class="fas fa-search"></i> Quick Search 31 Repositories...
+        </span>
+        <span class="kbd-shortcut">⌘K</span>
+      </button>
       <a href="#featured" class="nav-item mobile-nav-link">Featured Systems</a>
       <a href="#repositories" class="nav-item mobile-nav-link">All 31 Repositories</a>
       <a href="#stack" class="nav-item mobile-nav-link">Technical Stack</a>
       <a href="#credentials" class="nav-item mobile-nav-link">Credentials</a>
       <a href="#contact" class="nav-item mobile-nav-link">Contact</a>
-      <a href="https://github.com/devsamikhan" target="_blank" rel="noreferrer" class="github-btn" style="justify-content:center; width:100%;">
+      <a href="https://github.com/devsamikhan" target="_blank" rel="noreferrer" class="github-nav-btn" style="justify-content:center; width:100%;">
         <i class="fab fa-github"></i> Visit GitHub Profile ↗
       </a>
     </div>
@@ -987,6 +1235,9 @@
         <a href="#repositories" class="btn btn-primary">
           <i class="fas fa-layer-group"></i> Explore 31 Repositories
         </a>
+        <button class="btn btn-secondary" id="heroCmdBtn">
+          <i class="fas fa-search"></i> Quick Search <span class="kbd-shortcut" style="margin-left:4px;">⌘K</span>
+        </button>
         <a href="https://github.com/devsamikhan" target="_blank" rel="noreferrer" class="btn btn-secondary">
           <i class="fab fa-github"></i> github.com/devsamikhan ↗
         </a>
@@ -1029,140 +1280,170 @@
       <div class="bento-grid">
 
         <!-- Project 1: Aether -->
-        <div class="bento-card">
-          <div>
-            <div class="bento-top">
-              <span class="bento-tag">Systems & Compilers</span>
-              <a href="https://github.com/devsamikhan/aether" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="Aether GitHub Link">
-                <i class="fas fa-arrow-up-right-from-square"></i>
-              </a>
+        <div class="spotlight-card">
+          <div class="bento-card-inner">
+            <div>
+              <div class="bento-top">
+                <span class="bento-tag">Systems & Compilers</span>
+                <div class="card-actions-row">
+                  <button class="inspect-btn" onclick="openSpecs('aether')"><i class="fas fa-code"></i> Specs</button>
+                  <a href="https://github.com/devsamikhan/aether" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="Aether GitHub Link">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+              </div>
+              <h3 class="bento-title">Aether Programming Language</h3>
+              <p class="bento-desc">
+                The Post-Quantum, Intent-Driven Programming Language built from scratch in Rust. Implements custom lexer, tokenizer, AST compilation pipeline, and zero-cost memory safety abstractions.
+              </p>
+              <div class="bento-meta">
+                <i class="fas fa-bolt"></i> Zero-Cost Safety • Custom AST
+              </div>
             </div>
-            <h3 class="bento-title">Aether Programming Language</h3>
-            <p class="bento-desc">
-              The Post-Quantum, Intent-Driven Programming Language built from scratch in Rust. Implements custom lexer, tokenizer, AST compilation pipeline, and zero-cost memory safety abstractions.
-            </p>
-            <div class="bento-meta">
-              <i class="fas fa-bolt"></i> Zero-Cost Safety • Custom AST
+            <div class="bento-footer">
+              <span class="lang-indicator"><span class="lang-dot" style="background:#dea584;"></span> Rust</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">★ 1 Star</span>
             </div>
-          </div>
-          <div class="bento-footer">
-            <span class="lang-indicator"><span class="lang-dot" style="background:#dea584;"></span> Rust</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">★ 1 Star</span>
           </div>
         </div>
 
         <!-- Project 2: SamiOS -->
-        <div class="bento-card">
-          <div>
-            <div class="bento-top">
-              <span class="bento-tag">Operating Systems</span>
-              <a href="https://github.com/devsamikhan/SamiOS" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="SamiOS GitHub Link">
-                <i class="fas fa-arrow-up-right-from-square"></i>
-              </a>
+        <div class="spotlight-card">
+          <div class="bento-card-inner">
+            <div>
+              <div class="bento-top">
+                <span class="bento-tag">Operating Systems</span>
+                <div class="card-actions-row">
+                  <button class="inspect-btn" onclick="openSpecs('SamiOS')"><i class="fas fa-code"></i> Specs</button>
+                  <a href="https://github.com/devsamikhan/SamiOS" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="SamiOS GitHub Link">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+              </div>
+              <h3 class="bento-title">SamiOS Microkernel</h3>
+              <p class="bento-desc">
+                Experimental x86 operating system exploring protected mode transition, multi-stage bootloader architecture in Assembly, IDT interrupt handling, and memory paging mechanisms.
+              </p>
+              <div class="bento-meta">
+                <i class="fas fa-microchip"></i> x86 Protected Mode • Paging
+              </div>
             </div>
-            <h3 class="bento-title">SamiOS Microkernel</h3>
-            <p class="bento-desc">
-              Experimental x86 operating system exploring protected mode transition, multi-stage bootloader architecture in Assembly, IDT interrupt handling, and memory paging mechanisms.
-            </p>
-            <div class="bento-meta">
-              <i class="fas fa-microchip"></i> x86 Protected Mode • Paging
+            <div class="bento-footer">
+              <span class="lang-indicator"><span class="lang-dot" style="background:#555555;"></span> C & x86 Assembly</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">Bare-Metal</span>
             </div>
-          </div>
-          <div class="bento-footer">
-            <span class="lang-indicator"><span class="lang-dot" style="background:#555555;"></span> C & x86 Assembly</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">Bare-Metal</span>
           </div>
         </div>
 
         <!-- Project 3: theBLS -->
-        <div class="bento-card">
-          <div>
-            <div class="bento-top">
-              <span class="bento-tag">Android & Mobile</span>
-              <a href="https://github.com/devsamikhan/theBLS" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="theBLS GitHub Link">
-                <i class="fas fa-arrow-up-right-from-square"></i>
-              </a>
+        <div class="spotlight-card">
+          <div class="bento-card-inner">
+            <div>
+              <div class="bento-top">
+                <span class="bento-tag">Android & Mobile</span>
+                <div class="card-actions-row">
+                  <button class="inspect-btn" onclick="openSpecs('theBLS')"><i class="fas fa-code"></i> Specs</button>
+                  <a href="https://github.com/devsamikhan/theBLS" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="theBLS GitHub Link">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+              </div>
+              <h3 class="bento-title">theBLS Android Platform</h3>
+              <p class="bento-desc">
+                Native Android institutional client engineered with Kotlin and modern Jetpack Compose. Features reactive MVVM state management, offline-first Room database, and cloud sync.
+              </p>
+              <div class="bento-meta">
+                <i class="fab fa-android"></i> 60fps Native Compose • MVVM
+              </div>
             </div>
-            <h3 class="bento-title">theBLS Android Platform</h3>
-            <p class="bento-desc">
-              Native Android institutional client engineered with Kotlin and modern Jetpack Compose. Features reactive MVVM state management, offline-first Room database, and cloud sync.
-            </p>
-            <div class="bento-meta">
-              <i class="fab fa-android"></i> 60fps Native Compose • MVVM
+            <div class="bento-footer">
+              <span class="lang-indicator"><span class="lang-dot" style="background:#A97BFF;"></span> Kotlin</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">Android SDK</span>
             </div>
-          </div>
-          <div class="bento-footer">
-            <span class="lang-indicator"><span class="lang-dot" style="background:#A97BFF;"></span> Kotlin</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">Android SDK</span>
           </div>
         </div>
 
         <!-- Project 4: BLS School LMS -->
-        <div class="bento-card">
-          <div>
-            <div class="bento-top">
-              <span class="bento-tag">Full-Stack Cloud</span>
-              <a href="https://github.com/devsamikhan/blsschool" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="BLS School GitHub Link">
-                <i class="fas fa-arrow-up-right-from-square"></i>
-              </a>
+        <div class="spotlight-card">
+          <div class="bento-card-inner">
+            <div>
+              <div class="bento-top">
+                <span class="bento-tag">Full-Stack Cloud</span>
+                <div class="card-actions-row">
+                  <button class="inspect-btn" onclick="openSpecs('blsschool')"><i class="fas fa-code"></i> Specs</button>
+                  <a href="https://github.com/devsamikhan/blsschool" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="BLS School GitHub Link">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+              </div>
+              <h3 class="bento-title">BLS School LMS Engine</h3>
+              <p class="bento-desc">
+                Enterprise institutional school management platform and student ERP. Automates admissions, fee records, real-time parent notifications, and dynamic multi-page academic PDF report generation.
+              </p>
+              <div class="bento-meta">
+                <i class="fas fa-users"></i> 500+ Daily Users • 99.9% Uptime
+              </div>
             </div>
-            <h3 class="bento-title">BLS School LMS Engine</h3>
-            <p class="bento-desc">
-              Enterprise institutional school management platform and student ERP. Automates admissions, fee records, real-time parent notifications, and dynamic multi-page academic PDF report generation.
-            </p>
-            <div class="bento-meta">
-              <i class="fas fa-users"></i> 500+ Daily Users • 99.9% Uptime
+            <div class="bento-footer">
+              <span class="lang-indicator"><span class="lang-dot" style="background:#3178c6;"></span> TypeScript</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">Firebase</span>
             </div>
-          </div>
-          <div class="bento-footer">
-            <span class="lang-indicator"><span class="lang-dot" style="background:#3178c6;"></span> TypeScript</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">Firebase</span>
           </div>
         </div>
 
         <!-- Project 5: Bijli-Bot -->
-        <div class="bento-card">
-          <div>
-            <div class="bento-top">
-              <span class="bento-tag">Automation & IoT</span>
-              <a href="https://github.com/devsamikhan/Bijli-Bot" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="Bijli-Bot GitHub Link">
-                <i class="fas fa-arrow-up-right-from-square"></i>
-              </a>
+        <div class="spotlight-card">
+          <div class="bento-card-inner">
+            <div>
+              <div class="bento-top">
+                <span class="bento-tag">Automation & IoT</span>
+                <div class="card-actions-row">
+                  <button class="inspect-btn" onclick="openSpecs('Bijli-Bot')"><i class="fas fa-code"></i> Specs</button>
+                  <a href="https://github.com/devsamikhan/Bijli-Bot" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="Bijli-Bot GitHub Link">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+              </div>
+              <h3 class="bento-title">Bijli-Bot Power Assistant</h3>
+              <p class="bento-desc">
+                Autonomous electricity tracking and power management bot built with TypeScript and Node.js. Monitors real-time consumption cycles and automates billing calculation alerts.
+              </p>
+              <div class="bento-meta">
+                <i class="fas fa-plug"></i> Automated Billing & Alerts
+              </div>
             </div>
-            <h3 class="bento-title">Bijli-Bot Power Assistant</h3>
-            <p class="bento-desc">
-              Autonomous electricity tracking and power management bot built with TypeScript and Node.js. Monitors real-time consumption cycles and automates billing calculation alerts.
-            </p>
-            <div class="bento-meta">
-              <i class="fas fa-plug"></i> Automated Billing & Alerts
+            <div class="bento-footer">
+              <span class="lang-indicator"><span class="lang-dot" style="background:#3178c6;"></span> TypeScript</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">Node.js</span>
             </div>
-          </div>
-          <div class="bento-footer">
-            <span class="lang-indicator"><span class="lang-dot" style="background:#3178c6;"></span> TypeScript</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">Node.js</span>
           </div>
         </div>
 
         <!-- Project 6: HSAG Framework -->
-        <div class="bento-card">
-          <div>
-            <div class="bento-top">
-              <span class="bento-tag">Algorithms & Optimization</span>
-              <a href="https://github.com/devsamikhan/hsag" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="HSAG GitHub Link">
-                <i class="fas fa-arrow-up-right-from-square"></i>
-              </a>
+        <div class="spotlight-card">
+          <div class="bento-card-inner">
+            <div>
+              <div class="bento-top">
+                <span class="bento-tag">Algorithms & Optimization</span>
+                <div class="card-actions-row">
+                  <button class="inspect-btn" onclick="openSpecs('hsag')"><i class="fas fa-code"></i> Specs</button>
+                  <a href="https://github.com/devsamikhan/hsag" target="_blank" rel="noreferrer" class="card-link-btn" title="View Source on GitHub" aria-label="HSAG GitHub Link">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+              </div>
+              <h3 class="bento-title">HSAG Optimization Framework</h3>
+              <p class="bento-desc">
+                Hybrid Sami-Adaptive Greedy optimization framework for multi-constraint combinatorial problems, dynamic heuristic tuning, and sub-linear execution convergence.
+              </p>
+              <div class="bento-meta">
+                <i class="fas fa-chart-line"></i> Sub-Linear Convergence
+              </div>
             </div>
-            <h3 class="bento-title">HSAG Optimization Framework</h3>
-            <p class="bento-desc">
-              Hybrid Sami-Adaptive Greedy optimization framework for multi-constraint combinatorial problems, dynamic heuristic tuning, and sub-linear execution convergence.
-            </p>
-            <div class="bento-meta">
-              <i class="fas fa-chart-line"></i> Sub-Linear Convergence
+            <div class="bento-footer">
+              <span class="lang-indicator"><span class="lang-dot" style="background:#3572A5;"></span> Python</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">Algorithms</span>
             </div>
-          </div>
-          <div class="bento-footer">
-            <span class="lang-indicator"><span class="lang-dot" style="background:#3572A5;"></span> Python</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted);">Algorithms</span>
           </div>
         </div>
 
@@ -1183,7 +1464,7 @@
       <div class="repo-controls">
         <div class="search-bar-wrap">
           <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" id="repoSearch" placeholder="Search by project name, description, or language (e.g. rust, os, python, web)..." autocomplete="off" />
+          <input type="text" class="search-input" id="repoSearch" placeholder="Search across 31 repositories (or press ⌘K)..." autocomplete="off" />
           <button class="clear-search-btn" id="clearSearch" aria-label="Clear search input"><i class="fas fa-times"></i></button>
         </div>
 
@@ -1282,15 +1563,15 @@
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem;">
         <div class="stack-box" style="border-left: 3px solid #6366f1;">
           <h4 style="color:#fff; font-size:1.05rem; margin-bottom:0.3rem;">Google AI Professional</h4>
-          <p style="color:var(--text-secondary); font-size:0.86rem;">Coursera Certified • Neural Systems & Machine Learning Foundations.</p>
+          <p style="color:var(--text-body); font-size:0.86rem;">Coursera Certified • Neural Systems & Machine Learning Foundations.</p>
         </div>
         <div class="stack-box" style="border-left: 3px solid #a855f7;">
           <h4 style="color:#fff; font-size:1.05rem; margin-bottom:0.3rem;">Claude AI Integration</h4>
-          <p style="color:var(--text-secondary); font-size:0.86rem;">Cognitive Prompt Engineering, Agent Architecture & LLM Workflows.</p>
+          <p style="color:var(--text-body); font-size:0.86rem;">Cognitive Prompt Engineering, Agent Architecture & LLM Workflows.</p>
         </div>
         <div class="stack-box" style="border-left: 3px solid #10b981;">
           <h4 style="color:#fff; font-size:1.05rem; margin-bottom:0.3rem;">ICS (Computer Science)</h4>
-          <p style="color:var(--text-secondary); font-size:0.86rem;">Punjab Group of Colleges (PGC) • Algorithms & Core Systems.</p>
+          <p style="color:var(--text-body); font-size:0.86rem;">Punjab Group of Colleges (PGC) • Algorithms & Core Systems.</p>
         </div>
       </div>
     </section>
@@ -1337,6 +1618,59 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
+  <!-- Command Palette Modal (Cmd+K / Ctrl+K) -->
+  <div class="cmd-overlay" id="cmdOverlay">
+    <div class="cmd-box">
+      <div class="cmd-header">
+        <i class="fas fa-search" style="color:var(--accent-light);"></i>
+        <input type="text" class="cmd-input" id="cmdInput" placeholder="Search 31 repositories, architecture, stack, contacts..." autocomplete="off" />
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <div class="cmd-list" id="cmdList">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="cmd-footer">
+        <span>Navigation: <span class="kbd-shortcut">↑</span> <span class="kbd-shortcut">↓</span> to select</span>
+        <span>Action: <span class="kbd-shortcut">↵</span> to open</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Architecture Specs Modal -->
+  <div class="specs-overlay" id="specsOverlay">
+    <div class="specs-modal" id="specsModal">
+      <div class="specs-top">
+        <div>
+          <span class="bento-tag" id="specsBadge">Systems & Compilers</span>
+          <h3 style="font-size:1.4rem; color:#fff; font-weight:700; margin-top:0.4rem;" id="specsTitle">Project Title</h3>
+        </div>
+        <button class="specs-close-btn" onclick="closeSpecs()" aria-label="Close dialog"><i class="fas fa-times"></i></button>
+      </div>
+
+      <p style="color:var(--text-body); font-size:0.92rem; line-height:1.6; margin-bottom:1.2rem;" id="specsDesc">
+        Project architectural description.
+      </p>
+
+      <h4 style="font-size:0.95rem; color:#fff; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.4rem;">
+        <i class="fas fa-microchip" style="color:var(--accent-light);"></i> Core Technical Feats & Architecture
+      </h4>
+      <ul style="color:var(--text-body); font-size:0.88rem; line-height:1.7; padding-left:1.2rem; margin-bottom:1.2rem;" id="specsArchList">
+      </ul>
+
+      <h4 style="font-size:0.95rem; color:#fff; margin-bottom:0.4rem; display:flex; align-items:center; gap:0.4rem;">
+        <i class="fas fa-code" style="color:#dea584;"></i> Implementation Snippet
+      </h4>
+      <pre class="code-preview-block" id="specsCode"></pre>
+
+      <div style="display:flex; justify-content:flex-end; gap:0.8rem; margin-top:1.5rem;">
+        <button class="btn btn-secondary" onclick="closeSpecs()">Close</button>
+        <a href="#" target="_blank" rel="noreferrer" class="btn btn-primary" id="specsGitBtn">
+          <i class="fab fa-github"></i> Open Source Repository ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -1344,9 +1678,36 @@
     </div>
   </footer>
 
-  <!-- Scripts: Mobile Navigation & Repository Explorer -->
+  <!-- Scripts: Mobile Navigation, Spotlight, Command Palette & Repos Explorer -->
   <script>
-    // 1. Mobile Menu Drawer
+    const allRepos = [{"name": "aether", "description": "The Post-Quantum, Intent-Driven Programming Language engineered from scratch in Rust. Implements custom lexer, tokenizer, and AST generation pipeline.", "language": "Rust", "stars": 1, "url": "https://github.com/devsamikhan/aether", "category": "rust", "featured": true, "highlight": "Zero-Cost Safety \u2022 Custom AST"}, {"name": "SamiOS", "description": "Experimental x86 operating system and microkernel architecture exploring protected mode transition, custom bootloaders, IDT, and memory paging.", "language": "C", "stars": 0, "url": "https://github.com/devsamikhan/SamiOS", "category": "systems", "featured": true, "highlight": "x86 Protected Mode \u2022 Paging"}, {"name": "theBLS", "description": "Next-generation Android application engineered with Kotlin and Jetpack Compose featuring intelligent UI and cloud synchronization.", "language": "Kotlin", "stars": 0, "url": "https://github.com/devsamikhan/theBLS", "category": "kotlin", "featured": true, "highlight": "60fps Native Compose \u2022 MVVM"}, {"name": "blsschool", "description": "Enterprise institutional school management system and student ERP. Automates admissions, fee records, and dynamic academic report generation.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/blsschool", "category": "typescript", "featured": true, "highlight": "500+ Daily Users \u2022 99.9% Uptime"}, {"name": "Bijli-Bot", "description": "Autonomous power management and electricity billing calculation bot built with TypeScript and Node.js for tracking real-time load cycles.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/Bijli-Bot", "category": "typescript", "featured": true, "highlight": "Automated Billing & Alerts"}, {"name": "hsag", "description": "Hybrid Sami-Adaptive Greedy optimization framework for multi-constraint combinatorial problems and dynamic heuristic convergence.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/hsag", "category": "python", "featured": true, "highlight": "Sub-linear Heuristic Tuning"}, {"name": "sami-programming-language", "description": "Research compiler project exploring custom syntax parsing, grammar definitions, and abstract syntax tree generation in Rust.", "language": "Rust", "stars": 0, "url": "https://github.com/devsamikhan/sami-programming-language", "category": "rust", "featured": false}, {"name": "Hospital-management-system", "description": "Modern hospital and clinic operations portal featuring patient appointment scheduling, doctor registries, and record management.", "language": "TypeScript", "stars": 1, "url": "https://github.com/devsamikhan/Hospital-management-system", "category": "typescript", "featured": false}, {"name": "EXCHANGE-FULL-STACK", "description": "Comprehensive real-time financial trading platform for market data visualization, order book depth, and trade execution management.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/EXCHANGE-FULL-STACK", "category": "typescript", "featured": false}, {"name": "coffee-management-system", "description": "Artisanal coffee house management and point-of-sale inventory platform engineered with TypeScript and modern web interfaces.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/coffee-management-system", "category": "typescript", "featured": false}, {"name": "chatapp", "description": "Modern real-time messaging application with encrypted channel capabilities, responsive UI, and instant notification dispatch.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/chatapp", "category": "typescript", "featured": false}, {"name": "titan-ultra-pro", "description": "High-throughput cloud media downloader engineered in Python with multi-threaded streaming and automated format conversion.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/titan-ultra-pro", "category": "python", "featured": false}, {"name": "Sami-Downloader-Pro", "description": "Automated media fetching utility with progress bar tracking, stream extraction, and cloud storage dispatch.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/Sami-Downloader-Pro", "category": "python", "featured": false}, {"name": "sami-downloader-web", "description": "Fast and lightweight web interface for cloud-based video and audio retrieval with zero local resource bottlenecks.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/sami-downloader-web", "category": "python", "featured": false}, {"name": "sami-downloader-app", "description": "Cross-platform graphical desktop downloader client featuring one-click downloads and download queue management.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/sami-downloader-app", "category": "web", "featured": false}, {"name": "ListAi", "description": "Intelligent task prioritization engine harnessing AI APIs to automatically summarize, categorize, and execute daily routines.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/ListAi", "category": "python", "featured": false}, {"name": "Physics-Discovery", "description": "Computational physics simulation and educational tool exploring kinematic trajectories, gravity calculations, and vector mathematics.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/Physics-Discovery", "category": "python", "featured": false}, {"name": "sami-Database-engine", "description": "Experimental custom relational and key-value database storage engine exploring B-tree index concepts and disk paging.", "language": "C", "stars": 0, "url": "https://github.com/devsamikhan/sami-Database-engine", "category": "systems", "featured": false}, {"name": "blended-learning-school-website", "description": "Interactive educational portal for blended learning institutions featuring curriculum access and dynamic announcements.", "language": "JavaScript", "stars": 0, "url": "https://github.com/devsamikhan/blended-learning-school-website", "category": "web", "featured": false}, {"name": "My-Clock-Project", "description": "Precision web timekeeper with custom glassmorphism dials, timezone support, and stop-timer functionality.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/My-Clock-Project", "category": "typescript", "featured": false}, {"name": "my-firebase-project", "description": "Full-stack Firebase authentication, Firestore data synchronization, and cloud function backend template.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/my-firebase-project", "category": "typescript", "featured": false}, {"name": "my-flet-app", "description": "Modern cross-platform reactive GUI application built with Python Flet (Flutter runtime) for lightweight desktop experiences.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/my-flet-app", "category": "python", "featured": false}, {"name": "saudi-cafe", "description": "Refined specialty cafe digital storefront featuring interactive beverage catalogs and responsive mobile layout.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/saudi-cafe", "category": "typescript", "featured": false}, {"name": "Sami-Mega-Portfolio", "description": "Curated collection of 50+ interactive algorithms, DOM manipulation utilities, calculators, and API experiments.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/Sami-Mega-Portfolio", "category": "typescript", "featured": false}, {"name": "animated-giggle", "description": "Algorithmic utility sandbox and automation script library for rapid Python development workflows.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/animated-giggle", "category": "python", "featured": false}, {"name": "my-webs", "description": "Experimental UI components, modern landing page structures, and CSS layout design library.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/my-webs", "category": "web", "featured": false}, {"name": "love-website", "description": "Interactive creative celebration website with smooth canvas animations, custom particles, and audio effects.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/love-website", "category": "web", "featured": false}, {"name": "GHS-Sheikh-Mehmood", "description": "Official institutional portal for Government High School Sheikh Mehmood featuring student portals and faculty records.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/GHS-Sheikh-Mehmood", "category": "web", "featured": false}, {"name": "Ghs-sheikh-mehmood-", "description": "Academic administration and public announcement platform designed for local educational accessibility.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/Ghs-sheikh-mehmood-", "category": "web", "featured": false}, {"name": "devsamikhan", "description": "Special GitHub developer profile repository with automated stats, architectural roadmaps, and systems engineering showcase.", "language": "Markdown", "stars": 0, "url": "https://github.com/devsamikhan/devsamikhan", "category": "web", "featured": false}, {"name": "devsamikhan.github.io", "description": "Official production portfolio of Sami Ullah Khan \u2014 Built with modern minimalist Linear/Vercel design system.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/devsamikhan.github.io", "category": "web", "featured": false}];
+    const flagshipSpecs = {"aether": {"title": "Aether Programming Language", "badge": "Rust \u2022 Systems & Compilers", "description": "Aether is a post-quantum, intent-driven systems programming language built from the ground up in Rust. It aims to eliminate traditional memory management overhead while providing mathematical guarantees against quantum algorithmic vulnerabilities.", "architecture": ["Hand-written Lexer & Recursive-Descent Parser producing strongly-typed Abstract Syntax Trees (AST).", "Intent-driven semantic analyzer resolving type inference and quantum-resilient cryptographic primitives at compile time.", "Zero-cost safety abstractions with deterministic memory deallocation (no garbage collection pause)."], "code_snippet": "// Aether Sample Code (v0.1.0-alpha)\nintent secure_vault_transfer(sender: Address, receiver: Address, amount: U256) {\n    guard sender.balance >= amount else revert(\"InsufficientFunds\");\n    \n    #post_quantum_state {\n        let signature = LatticeCrypto::sign_dilithium(sender.private_key, amount);\n        verify_intent(signature) => receiver.deposit(amount);\n    }\n}", "url": "https://github.com/devsamikhan/aether"}, "SamiOS": {"title": "SamiOS Microkernel Architecture", "badge": "C & x86 Assembly \u2022 Operating Systems", "description": "An experimental bare-metal x86 operating system and microkernel. Built to understand low-level hardware communication, CPU control registers, memory segmentation, and paging from the BIOS boot phase to kernel ring 0.", "architecture": ["Custom 2-stage MBR bootloader switching the CPU from 16-bit real mode into 32-bit protected mode.", "Global Descriptor Table (GDT) and Interrupt Descriptor Table (IDT) with customized ISR hardware handlers.", "Two-tier paging memory manager with identity mapping for the kernel space and virtual address translation for user processes."], "code_snippet": "; SamiOS Stage 1 Bootloader (x86 Real Mode to Protected Mode)\n[bits 16]\n[org 0x7c00]\n\nstart:\n    cli                         ; Clear interrupts\n    xor ax, ax\n    mov ds, ax\n    mov es, ax\n    mov ss, ax\n    mov sp, 0x7c00              ; Setup stack\n\n    call enable_a20             ; Enable A20 Line\n    lgdt [gdt_descriptor]       ; Load Global Descriptor Table\n\n    mov eax, cr0\n    or eax, 0x1                 ; Set Protected Mode bit (PE)\n    mov cr0, eax\n\n    jmp 0x08:init_pm            ; Far jump to 32-bit Protected Mode", "url": "https://github.com/devsamikhan/SamiOS"}, "theBLS": {"title": "theBLS Android Platform", "badge": "Kotlin & Jetpack Compose \u2022 Mobile AI", "description": "Production-grade Android application developed for institutional administration. Built entirely in Kotlin utilizing modern reactive Jetpack Compose primitives and Clean Architecture.", "architecture": ["Declarative UI architecture running at a consistent 60fps with zero XML layout debt.", "Offline-first repository pattern utilizing Room SQLite with automated background sync via Kotlin Coroutines and Flow.", "Integrated edge AI models for instantaneous client-side document classification."], "code_snippet": "// theBLS Jetpack Compose State Architecture\n@Composable\nfun StudentDashboardScreen(\n    viewModel: StudentViewModel = viewModel()\n) {\n    val uiState by viewModel.uiState.collectAsStateWithLifecycle()\n    \n    Scaffold(\n        topBar = { ModernTopBar(title = \"Academic Telemetry\") }\n    ) { paddingValues ->\n        when (uiState) {\n            is UiState.Loading -> SkeletonShimmerLoader()\n            is UiState.Success -> StudentMetricsGrid(\n                metrics = (uiState as UiState.Success).data,\n                modifier = Modifier.padding(paddingValues)\n            )\n            is UiState.Error -> ErrorBanner(message = (uiState as UiState.Error).message)\n        }\n    }\n}", "url": "https://github.com/devsamikhan/theBLS"}, "blsschool": {"title": "BLS School LMS Engine", "badge": "TypeScript & Firebase \u2022 Institutional ERP", "description": "Comprehensive school management system serving over 500 daily active students, teachers, and administrators. Automates fee records, grading matrices, and PDF report generation.", "architecture": ["Real-time event-driven data layer built on Google Cloud / Firebase Firestore with sub-second synchronization.", "Dynamic client-side PDF document compiler producing multi-page academic transcripts and invoices.", "Role-based access control (RBAC) securing student privacy across parent and staff portals."], "code_snippet": "// Dynamic Report Generation Pipeline\nexport async function compileAcademicReport(studentId: string, term: string): Promise<Blob> {\n    const records = await db.collection('grades')\n        .where('studentId', '==', studentId)\n        .where('term', '==', term)\n        .get();\n        \n    const gpa = calculateWeightedGPA(records.docs.map(d => d.data()));\n    return await PDFEngine.renderTemplate('transcript_v2', { studentId, records, gpa });\n}", "url": "https://github.com/devsamikhan/blsschool"}, "Bijli-Bot": {"title": "Bijli-Bot Power Assistant", "badge": "TypeScript & Node.js \u2022 Automation Bot", "description": "Autonomous power grid monitoring and billing estimation bot built with TypeScript. Solves repetitive power tracking by automating meter threshold alerts and forecasting monthly electricity bills.", "architecture": ["Stateful interval tracking engine polling grid APIs and consumption meters with robust error recovery.", "Predictive billing algorithm estimating slab-rate surcharges and peak-hour rate multipliers.", "WebHook dispatch subsystem pushing real-time WhatsApp & Telegram notifications."], "code_snippet": "// Power Load Forecasting & Rate Thresholding\nexport class PowerCalculator {\n    static estimateBill(unitsConsumed: number, peakUnits: number): BillingSummary {\n        const baseRate = unitsConsumed > 300 ? 32.5 : 22.0;\n        const peakRate = peakUnits * 48.0;\n        const tax = (unitsConsumed * baseRate + peakRate) * 0.18;\n        \n        return {\n            totalUnits: unitsConsumed + peakUnits,\n            estimatedCost: (unitsConsumed * baseRate) + peakRate + tax,\n            slabTier: unitsConsumed > 300 ? 'HighTier' : 'StandardTier'\n        };\n    }\n}", "url": "https://github.com/devsamikhan/Bijli-Bot"}, "hsag": {"title": "HSAG Optimization Framework", "badge": "Python \u2022 Algorithms & Combinatorics", "description": "Hybrid Sami-Adaptive Greedy algorithmic framework designed for multi-constraint combinatorial optimization problems under volatile heuristic landscapes.", "architecture": ["Adaptive penalty function dynamically modulating step sizes based on gradient stagnation.", "Multi-objective Pareto frontier approximation achieving 3x faster convergence than standard genetic baselines.", "Vectorized NumPy implementation benchmarked for high computational efficiency."], "code_snippet": "# Hybrid Sami-Adaptive Greedy Step\nimport numpy as np\n\nclass HSAGOptimizer:\n    def __init__(self, constraints, alpha=0.85):\n        self.alpha = alpha\n        self.history = []\n\n    def step(self, candidates, cost_fn):\n        heuristics = np.array([cost_fn(c) for c in candidates])\n        weights = np.exp(-self.alpha * heuristics) / np.sum(np.exp(-self.alpha * heuristics))\n        chosen_idx = np.random.choice(len(candidates), p=weights)\n        return candidates[chosen_idx]", "url": "https://github.com/devsamikhan/hsag"}};
+
+    const langColors = {
+      'Rust': '#dea584',
+      'Python': '#3572A5',
+      'TypeScript': '#3178c6',
+      'JavaScript': '#f1e05a',
+      'Kotlin': '#A97BFF',
+      'C': '#555555',
+      'HTML': '#e34c26',
+      'Markdown': '#71717a'
+    };
+
+    // 1. Spotlight Mouse Tracking on Cards
+    if (window.matchMedia('(hover: hover)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        document.querySelectorAll('.spotlight-card').forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+    }
+
+    // 2. Mobile Menu Drawer
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileDrawer = document.getElementById('mobileDrawer');
     if (mobileMenuToggle && mobileDrawer) {
@@ -1364,7 +1725,7 @@
       });
     }
 
-    // 2. Back to Top Button
+    // 3. Back to Top Button
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 400) {
@@ -1374,20 +1735,132 @@
       }
     }, { passive: true });
 
-    // 3. Repositories Explorer
-    const allRepos = [{"name": "aether", "description": "The Post-Quantum, Intent-Driven Programming Language engineered from scratch in Rust. Implements custom lexer, tokenizer, and AST generation pipeline.", "language": "Rust", "stars": 1, "url": "https://github.com/devsamikhan/aether", "category": "rust", "featured": true, "highlight": "Zero-Cost Safety \u2022 Custom AST"}, {"name": "SamiOS", "description": "Experimental x86 operating system and microkernel architecture exploring protected mode transition, custom bootloaders, IDT, and memory paging.", "language": "C", "stars": 0, "url": "https://github.com/devsamikhan/SamiOS", "category": "systems", "featured": true, "highlight": "x86 Protected Mode \u2022 Paging"}, {"name": "theBLS", "description": "Next-generation Android application engineered with Kotlin and Jetpack Compose featuring intelligent UI and cloud synchronization.", "language": "Kotlin", "stars": 0, "url": "https://github.com/devsamikhan/theBLS", "category": "kotlin", "featured": true, "highlight": "60fps Native Compose \u2022 MVVM"}, {"name": "blsschool", "description": "Enterprise institutional school management system and student ERP. Automates admissions, fee records, and dynamic academic report generation.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/blsschool", "category": "typescript", "featured": true, "highlight": "500+ Daily Users \u2022 99.9% Uptime"}, {"name": "Bijli-Bot", "description": "Autonomous power management and electricity billing calculation bot built with TypeScript and Node.js for tracking real-time load cycles.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/Bijli-Bot", "category": "typescript", "featured": true, "highlight": "Automated Billing & Alerts"}, {"name": "hsag", "description": "Hybrid Sami-Adaptive Greedy optimization framework for multi-constraint combinatorial problems and dynamic heuristic convergence.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/hsag", "category": "python", "featured": true, "highlight": "Sub-linear Heuristic Tuning"}, {"name": "sami-programming-language", "description": "Research compiler project exploring custom syntax parsing, grammar definitions, and abstract syntax tree generation in Rust.", "language": "Rust", "stars": 0, "url": "https://github.com/devsamikhan/sami-programming-language", "category": "rust", "featured": false}, {"name": "Hospital-management-system", "description": "Modern hospital and clinic operations portal featuring patient appointment scheduling, doctor registries, and record management.", "language": "TypeScript", "stars": 1, "url": "https://github.com/devsamikhan/Hospital-management-system", "category": "typescript", "featured": false}, {"name": "EXCHANGE-FULL-STACK", "description": "Comprehensive real-time financial trading platform for market data visualization, order book depth, and trade execution management.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/EXCHANGE-FULL-STACK", "category": "typescript", "featured": false}, {"name": "coffee-management-system", "description": "Artisanal coffee house management and point-of-sale inventory platform engineered with TypeScript and modern web interfaces.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/coffee-management-system", "category": "typescript", "featured": false}, {"name": "chatapp", "description": "Modern real-time messaging application with encrypted channel capabilities, responsive UI, and instant notification dispatch.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/chatapp", "category": "typescript", "featured": false}, {"name": "titan-ultra-pro", "description": "High-throughput cloud media downloader engineered in Python with multi-threaded streaming and automated format conversion.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/titan-ultra-pro", "category": "python", "featured": false}, {"name": "Sami-Downloader-Pro", "description": "Automated media fetching utility with progress bar tracking, stream extraction, and cloud storage dispatch.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/Sami-Downloader-Pro", "category": "python", "featured": false}, {"name": "sami-downloader-web", "description": "Fast and lightweight web interface for cloud-based video and audio retrieval with zero local resource bottlenecks.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/sami-downloader-web", "category": "python", "featured": false}, {"name": "sami-downloader-app", "description": "Cross-platform graphical desktop downloader client featuring one-click downloads and download queue management.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/sami-downloader-app", "category": "web", "featured": false}, {"name": "ListAi", "description": "Intelligent task prioritization engine harnessing AI APIs to automatically summarize, categorize, and execute daily routines.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/ListAi", "category": "python", "featured": false}, {"name": "Physics-Discovery", "description": "Computational physics simulation and educational tool exploring kinematic trajectories, gravity calculations, and vector mathematics.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/Physics-Discovery", "category": "python", "featured": false}, {"name": "sami-Database-engine", "description": "Experimental custom relational and key-value database storage engine exploring B-tree index concepts and disk paging.", "language": "C", "stars": 0, "url": "https://github.com/devsamikhan/sami-Database-engine", "category": "systems", "featured": false}, {"name": "blended-learning-school-website", "description": "Interactive educational portal for blended learning institutions featuring curriculum access and dynamic announcements.", "language": "JavaScript", "stars": 0, "url": "https://github.com/devsamikhan/blended-learning-school-website", "category": "web", "featured": false}, {"name": "My-Clock-Project", "description": "Precision web timekeeper with custom glassmorphism dials, timezone support, and stop-timer functionality.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/My-Clock-Project", "category": "typescript", "featured": false}, {"name": "my-firebase-project", "description": "Full-stack Firebase authentication, Firestore data synchronization, and cloud function backend template.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/my-firebase-project", "category": "typescript", "featured": false}, {"name": "my-flet-app", "description": "Modern cross-platform reactive GUI application built with Python Flet (Flutter runtime) for lightweight desktop experiences.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/my-flet-app", "category": "python", "featured": false}, {"name": "saudi-cafe", "description": "Refined specialty cafe digital storefront featuring interactive beverage catalogs and responsive mobile layout.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/saudi-cafe", "category": "typescript", "featured": false}, {"name": "Sami-Mega-Portfolio", "description": "Curated collection of 50+ interactive algorithms, DOM manipulation utilities, calculators, and API experiments.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/Sami-Mega-Portfolio", "category": "typescript", "featured": false}, {"name": "animated-giggle", "description": "Algorithmic utility sandbox and automation script library for rapid Python development workflows.", "language": "Python", "stars": 0, "url": "https://github.com/devsamikhan/animated-giggle", "category": "python", "featured": false}, {"name": "my-webs", "description": "Experimental UI components, modern landing page structures, and CSS layout design library.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/my-webs", "category": "web", "featured": false}, {"name": "love-website", "description": "Interactive creative celebration website with smooth canvas animations, custom particles, and audio effects.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/love-website", "category": "web", "featured": false}, {"name": "GHS-Sheikh-Mehmood", "description": "Official institutional portal for Government High School Sheikh Mehmood featuring student portals and faculty records.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/GHS-Sheikh-Mehmood", "category": "web", "featured": false}, {"name": "Ghs-sheikh-mehmood-", "description": "Academic administration and public announcement platform designed for local educational accessibility.", "language": "HTML", "stars": 0, "url": "https://github.com/devsamikhan/Ghs-sheikh-mehmood-", "category": "web", "featured": false}, {"name": "devsamikhan", "description": "Special GitHub developer profile repository with automated stats, architectural roadmaps, and systems engineering showcase.", "language": "Markdown", "stars": 0, "url": "https://github.com/devsamikhan/devsamikhan", "category": "web", "featured": false}, {"name": "devsamikhan.github.io", "description": "Official production portfolio of Sami Ullah Khan \u2014 Built with modern minimalist Linear/Vercel design system.", "language": "TypeScript", "stars": 0, "url": "https://github.com/devsamikhan/devsamikhan.github.io", "category": "web", "featured": false}];
+    // 4. Command Palette (Cmd+K / Ctrl+K)
+    const cmdOverlay = document.getElementById('cmdOverlay');
+    const cmdInput = document.getElementById('cmdInput');
+    const cmdList = document.getElementById('cmdList');
+    let activeCmdIdx = 0;
 
-    const langColors = {
-      'Rust': '#dea584',
-      'Python': '#3572A5',
-      'TypeScript': '#3178c6',
-      'JavaScript': '#f1e05a',
-      'Kotlin': '#A97BFF',
-      'C': '#555555',
-      'HTML': '#e34c26',
-      'Markdown': '#71717a'
-    };
+    function openCmdPalette() {
+      cmdOverlay.classList.add('open');
+      cmdInput.value = '';
+      renderCmdResults('');
+      setTimeout(() => cmdInput.focus(), 50);
+      if (mobileDrawer) mobileDrawer.classList.remove('open');
+    }
 
+    function closeCmdPalette() {
+      cmdOverlay.classList.remove('open');
+    }
+
+    document.getElementById('navCmdTrigger')?.addEventListener('click', openCmdPalette);
+    document.getElementById('mobileCmdTrigger')?.addEventListener('click', openCmdPalette);
+    document.getElementById('heroCmdBtn')?.addEventListener('click', openCmdPalette);
+
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (cmdOverlay.classList.contains('open')) {
+          closeCmdPalette();
+        } else {
+          openCmdPalette();
+        }
+      } else if (e.key === 'Escape') {
+        closeCmdPalette();
+        closeSpecs();
+      }
+    });
+
+    cmdOverlay.addEventListener('click', (e) => {
+      if (e.target === cmdOverlay) closeCmdPalette();
+    });
+
+    function renderCmdResults(query) {
+      const q = query.toLowerCase().trim();
+      const results = allRepos.filter(r => 
+        !q || r.name.toLowerCase().includes(q) || (r.description && r.description.toLowerCase().includes(q)) || (r.language && r.language.toLowerCase().includes(q))
+      );
+
+      activeCmdIdx = 0;
+
+      if (results.length === 0) {
+        cmdList.innerHTML = '<div style="padding:1.5rem; text-align:center; color:var(--text-muted); font-size:0.88rem;">No repositories found.</div>';
+        return;
+      }
+
+      cmdList.innerHTML = results.map((r, idx) => `
+        <a href="${r.url}" target="_blank" rel="noreferrer" class="cmd-item ${idx === 0 ? 'active' : ''}" data-idx="${idx}">
+          <div class="cmd-item-left">
+            <span class="lang-dot" style="background:${langColors[r.language] || '#71717a'};"></span>
+            <span style="font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff;">${r.name}</span>
+            <span style="font-size:0.75rem; color:var(--text-muted); margin-left:0.4rem;">${r.language || 'Code'}</span>
+          </div>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Open ↗</span>
+        </a>
+      `).join('');
+    }
+
+    cmdInput.addEventListener('input', (e) => {
+      renderCmdResults(e.target.value);
+    });
+
+    cmdInput.addEventListener('keydown', (e) => {
+      const items = cmdList.querySelectorAll('.cmd-item');
+      if (items.length === 0) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeCmdIdx = (activeCmdIdx + 1) % items.length;
+        updateActiveCmdItem(items);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeCmdIdx = (activeCmdIdx - 1 + items.length) % items.length;
+        updateActiveCmdItem(items);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        items[activeCmdIdx]?.click();
+      }
+    });
+
+    function updateActiveCmdItem(items) {
+      items.forEach((it, i) => {
+        it.classList.toggle('active', i === activeCmdIdx);
+        if (i === activeCmdIdx) it.scrollIntoView({ block: 'nearest' });
+      });
+    }
+
+    // 5. Architecture Specs Modal
+    const specsOverlay = document.getElementById('specsOverlay');
+    const specsTitle = document.getElementById('specsTitle');
+    const specsBadge = document.getElementById('specsBadge');
+    const specsDesc = document.getElementById('specsDesc');
+    const specsArchList = document.getElementById('specsArchList');
+    const specsCode = document.getElementById('specsCode');
+    const specsGitBtn = document.getElementById('specsGitBtn');
+
+    function openSpecs(key) {
+      const item = flagshipSpecs[key];
+      if (!item) return;
+
+      specsTitle.textContent = item.title;
+      specsBadge.textContent = item.badge;
+      specsDesc.textContent = item.description;
+      specsArchList.innerHTML = item.architecture.map(a => `<li>${a}</li>`).join('');
+      specsCode.textContent = item.code_snippet;
+      specsGitBtn.href = item.url;
+
+      specsOverlay.classList.add('open');
+    }
+
+    function closeSpecs() {
+      specsOverlay.classList.remove('open');
+    }
+
+    specsOverlay.addEventListener('click', (e) => {
+      if (e.target === specsOverlay) closeSpecs();
+    });
+
+    // 6. Repositories Explorer
     let activeFilter = 'all';
     let searchQuery = '';
 
@@ -1428,27 +1901,29 @@
         const starsText = repo.stars > 0 ? `★ ${repo.stars}` : '';
 
         return `
-          <div class="repo-card">
-            <div>
-              <div class="repo-card-top">
-                <a href="${repo.url}" target="_blank" rel="noreferrer" class="repo-name">
-                  <i class="far fa-folder-closed" style="font-size:0.85rem; color:var(--accent-light);"></i>
-                  ${repo.name}
-                </a>
-                <a href="${repo.url}" target="_blank" rel="noreferrer" class="card-link-btn" title="Open repository" aria-label="Open ${repo.name} repository">
-                  <i class="fas fa-arrow-up-right-from-square"></i>
-                </a>
+          <div class="spotlight-card">
+            <div class="repo-card-inner">
+              <div>
+                <div class="repo-card-top">
+                  <a href="${repo.url}" target="_blank" rel="noreferrer" class="repo-name">
+                    <i class="far fa-folder-closed" style="font-size:0.85rem; color:var(--accent-light);"></i>
+                    ${repo.name}
+                  </a>
+                  <a href="${repo.url}" target="_blank" rel="noreferrer" class="card-link-btn" title="Open repository" aria-label="Open ${repo.name} repository">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+                <p class="repo-desc">${repo.description || 'Open-source repository engineered by Sami Ullah Khan.'}</p>
               </div>
-              <p class="repo-desc">${repo.description || 'Open-source repository engineered by Sami Ullah Khan.'}</p>
-            </div>
-            <div class="repo-footer">
-              <span class="lang-indicator">
-                <span class="lang-dot" style="background:${color};"></span>
-                ${repo.language || 'Code'}
-              </span>
-              <div class="repo-stats">
-                ${starsText ? `<span>${starsText}</span>` : ''}
-                <a href="${repo.url}" target="_blank" rel="noreferrer" style="color:var(--text-muted); text-decoration:none;">Code ↗</a>
+              <div class="repo-footer">
+                <span class="lang-indicator">
+                  <span class="lang-dot" style="background:${color};"></span>
+                  ${repo.language || 'Code'}
+                </span>
+                <div class="repo-stats">
+                  ${starsText ? `<span>${starsText}</span>` : ''}
+                  <a href="${repo.url}" target="_blank" rel="noreferrer" style="color:var(--text-muted); text-decoration:none;">Code ↗</a>
+                </div>
               </div>
             </div>
           </div>
@@ -1486,7 +1961,7 @@
       repoSearch.focus();
     });
 
-    // 1-Click Copy Email
+    // 7. 1-Click Copy Email
     function copyEmail() {
       const email = 'samikhanniazi278@gmail.com';
       navigator.clipboard.writeText(email).then(() => {
@@ -1500,8 +1975,35 @@
       });
     }
 
+    // 8. Live GitHub Sync (Non-blocking background refresh)
+    async function syncLiveGitHubData() {
+      try {
+        const res = await fetch('https://api.github.com/users/devsamikhan/repos?per_page=100&sort=pushed');
+        if (!res.ok) return;
+        const liveData = await res.json();
+        
+        let updatedAny = false;
+        liveData.forEach(lr => {
+          const target = allRepos.find(r => r.name.toLowerCase() === lr.name.toLowerCase());
+          if (target) {
+            if (lr.stargazers_count !== target.stars) {
+              target.stars = lr.stargazers_count;
+              updatedAny = true;
+            }
+          }
+        });
+
+        if (updatedAny) {
+          renderRepositories();
+        }
+      } catch (err) {
+        // Graceful fallback to static data
+      }
+    }
+
     // Initial render
     renderRepositories();
+    syncLiveGitHubData();
   </script>
 </body>
 </html>
